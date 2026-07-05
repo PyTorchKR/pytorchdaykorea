@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{-webkit-font-smoothing:antialiased;background:#0F0A18}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  @keyframes pdk-mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes pdk-mq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+</style>
+</helmet>
+
+<div style="--bg:#0F0A18;--panel:#1A1228;--panel2:#241836;--line:rgba(251,247,255,.12);--ink:#FBF7FF;--ink2:rgba(251,247,255,.66);--ink3:rgba(251,247,255,.42);--c1:#FF6A3D;--c2:#FF3D7F;--c3:#FFC24B;--c4:#34D6C8;--ac:{{ accent }};--rad:{{ rad }};position:relative;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,sans-serif;line-height:1.6;overflow-x:hidden">
+
+  <canvas ref="{{ canvasRef }}" style="position:fixed;inset:0;pointer-events:none;z-index:45"></canvas>
+
+  <!-- SIDE TOC -->
+  <nav style="position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:6px" aria-label="섹션 바로가기">
+    <a href="#top" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotTop }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Top</span>
+    </a>
+    <a href="#about" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotAbout }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">About</span>
+    </a>
+    <a href="#topics" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotTopics }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Programs</span>
+    </a>
+    <a href="#cfp" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotCfp }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">CFP</span>
+    </a>
+    <a href="#venue" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotVenue }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Venue</span>
+    </a>
+    <a href="#organizers" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotOrganizers }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Organizers</span>
+    </a>
+  </nav>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 72%, transparent);backdrop-filter:saturate(150%) blur(16px);border-bottom:1px solid var(--line)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px">
+      <a href="#top" style="display:flex;align-items:center">
+        <sc-if value="{{ isEn }}" hint-placeholder-val="{{ false }}"><img src="logo/png/logo_en_dark.png" alt="PyTorch Korea User Group" style="height:37px;width:auto" /></sc-if>
+        <sc-if value="{{ isKo }}" hint-placeholder-val="{{ true }}"><img src="logo/png/logo_ko_dark.png" alt="PyTorch Korea User Group" style="height:26px;width:auto" /></sc-if>
+      </a>
+      <div style="display:flex;align-items:center;gap:16px">
+        <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+          <nav style="display:flex;align-items:center;gap:24px;justify-content:flex-end;white-space:nowrap">
+            <a href="#about" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">About</a>
+            <a href="#topics" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Programs</a>
+            <a href="#cfp" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">CFP</a>
+            <a href="#sponsor" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Sponsorship</a>
+            <a href="#venue" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Venue</a>
+            <a href="#organizers" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Organizers</a>
+            <a href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="font-size:14.5px;font-weight:500;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;gap:5px" style-hover="color:var(--ink)">Code of Conduct 🔗</a>
+          </nav>
+        </sc-if>
+        <div style="display:flex;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:3px;flex:0 0 auto">
+          <button onClick="{{ setLangKo }}" style="padding:5px 11px;border-radius:999px;background:none;border:none;cursor:pointer;color:{{ koBtnColor }}">KO</button>
+          <button onClick="{{ setLangEn }}" style="padding:5px 11px;border-radius:999px;background:none;border:none;cursor:pointer;color:{{ enBtnColor }}">EN</button>
+        </div>
+        <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ toggleMenu }}" aria-label="메뉴 열기" style="display:flex;flex-direction:column;justify-content:center;gap:4px;width:42px;height:42px;background:none;border:1px solid var(--line);border-radius:11px;cursor:pointer;padding:0 11px;flex:0 0 auto">
+            <span style="height:2px;background:var(--ink);border-radius:2px;display:block"></span>
+            <span style="height:2px;background:var(--ink);border-radius:2px;display:block"></span>
+            <span style="height:2px;background:var(--ink);border-radius:2px;display:block"></span>
+          </button>
+        </sc-if>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav style="display:flex;flex-direction:column;max-width:1240px;margin:0 auto;padding:6px 32px 20px;border-top:1px solid var(--line)">
+        <a onClick="{{ closeMenu }}" href="#about" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">About</a>
+        <a onClick="{{ closeMenu }}" href="#topics" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Programs</a>
+        <a onClick="{{ closeMenu }}" href="#cfp" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">CFP</a>
+        <a onClick="{{ closeMenu }}" href="#sponsor" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Sponsorship</a>
+        <a onClick="{{ closeMenu }}" href="#venue" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Venue</a>
+        <a onClick="{{ closeMenu }}" href="#organizers" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Organizers</a>
+        <a onClick="{{ closeMenu }}" href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px">Code of Conduct 🔗</a>
+      </nav>
+    </sc-if>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="position:relative">
+    <div style="position:relative;width:100%;overflow:hidden">
+      <picture>
+        <source media="(max-width:680px)" srcset="torch_yaho_2_square2.png" />
+        <img src="torch_yaho_2.png" alt="PyTorch Day Korea 2026 — Torch YAHO! Yet Another Helpful Operator. 2026.10.31 (Sat) Seoul, Korea" style="width:100%;height:min(84vh,780px);object-fit:cover;object-position:50% 40%;display:block" />
+      </picture>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(to top, var(--bg), transparent);pointer-events:none"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div style="overflow:hidden;background:var(--ac,#EE4C2C);padding:15px 0;transform:rotate(-1.4deg) scale(1.04);margin:14px 0 0;box-shadow:0 14px 40px -18px var(--ac,#EE4C2C)">
+    <div style="display:flex;width:max-content;white-space:nowrap;animation:pdk-mq 26s linear infinite;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:.01em;color:#1a0d06">
+      <div style="display:inline-flex;align-items:center;gap:22px;padding-right:22px">
+        <span>TORCH YAHO!</span><span style="opacity:.55">✦</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px">import torch; torch.compile(ALL)</span><span style="opacity:.55">✦</span><span>YET ANOTHER HELPFUL OPERATOR</span><span style="opacity:.55">✦</span>
+        <span>TORCH YAHO!</span><span style="opacity:.55">✦</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px">import torch; torch.compile(ALL)</span><span style="opacity:.55">✦</span><span>YET ANOTHER HELPFUL OPERATOR</span><span style="opacity:.55">✦</span>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:22px;padding-right:22px" aria-hidden="true">
+        <span>TORCH YAHO!</span><span style="opacity:.55">✦</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px">import torch; torch.compile(ALL)</span><span style="opacity:.55">✦</span><span>YET ANOTHER HELPFUL OPERATOR</span><span style="opacity:.55">✦</span>
+        <span>TORCH YAHO!</span><span style="opacity:.55">✦</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px">import torch; torch.compile(ALL)</span><span style="opacity:.55">✦</span><span>YET ANOTHER HELPFUL OPERATOR</span><span style="opacity:.55">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding:clamp(84px,11vw,140px) 0 clamp(64px,8vw,100px)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c4)"><span style="width:36px;height:2.5px;background:var(--c4);display:block"></span>About the event</div>
+      <div style="margin-top:32px;max-width:68ch;display:flex;flex-direction:column;gap:20px">
+        <p style="font-size:clamp(17px,1.7vw,20px);line-height:1.75;color:var(--ink);font-weight:500">{{ t.about.p1 }}</p>
+        <p style="font-size:16.5px;line-height:1.9;color:var(--ink2)">{{ t.about.p2 }}</p>
+        <p style="font-size:16.5px;line-height:1.9;color:var(--ink2)">{{ t.about.p3 }}</p>
+        <p style="font-size:16.5px;line-height:1.9;color:var(--ink2)">{{ t.about.p4 }}</p>
+        <p style="font-size:16.5px;line-height:1.9;color:var(--ink2)">{{ t.about.p5 }}</p>
+        <p style="font-size:16.5px;line-height:1.9;color:var(--ink2)">{{ t.about.p6 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics" style="padding:clamp(72px,9vw,112px) 0;background:var(--panel)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c2)"><span style="width:36px;height:2.5px;background:var(--c2);display:block"></span>Programs</div>
+      </div>
+
+      <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+
+        <article onClick="{{ spark }}" style="padding:40px 28px;border-right:1px solid var(--line);cursor:pointer;transition:background .2s ease" style-hover="background:color-mix(in srgb, var(--c1) 6%, transparent)">
+          <span style="display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,5vw,72px);line-height:.9;color:var(--c1)">01</span>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;line-height:1.15;color:var(--ink);margin-top:18px">Build Track</h3>
+          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:16px">{{ t.topics.track1Desc }}</p>
+        </article>
+
+        <article onClick="{{ spark }}" style="padding:40px 28px;border-right:1px solid var(--line);cursor:pointer;transition:background .2s ease" style-hover="background:color-mix(in srgb, var(--c2) 6%, transparent)">
+          <span style="display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,5vw,72px);line-height:.9;color:var(--c2)">02</span>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;line-height:1.15;color:var(--ink);margin-top:18px">Serve Track</h3>
+          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:16px">{{ t.topics.track2Desc }}</p>
+        </article>
+
+        <article onClick="{{ spark }}" style="padding:40px 28px;cursor:pointer;transition:background .2s ease" style-hover="background:color-mix(in srgb, var(--c4) 6%, transparent)">
+          <span style="display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,5vw,72px);line-height:.9;color:var(--c4)">03</span>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em;line-height:1.15;color:var(--ink);margin-top:18px">Run Track</h3>
+          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:16px">{{ t.topics.track3Desc }}</p>
+        </article>
+
+      </div>
+
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+        <span style="font-family:'Syne','Pretendard',sans-serif;font-weight:700;font-size:16px;color:var(--ink)">{{ t.topics.timetableLabel }}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;color:var(--c2);border:1px solid color-mix(in srgb, var(--c2) 40%, transparent);padding:3px 10px;border-radius:999px">{{ t.topics.comingSoon }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CFP + SPONSOR -->
+  <section id="cfp" style="padding:clamp(72px,9vw,112px) 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+
+        <div style="background:linear-gradient(155deg, color-mix(in srgb, var(--ac,#EE4C2C) 15%, var(--panel)), var(--panel));border:1px solid color-mix(in srgb, var(--ac,#EE4C2C) 38%, transparent);border-radius:var(--rad,24px);padding:clamp(34px,4vw,52px)">
+          <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac,#EE4C2C)"><span style="width:36px;height:2.5px;background:var(--ac,#EE4C2C);display:block"></span>CFP</div>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;margin-top:18px;line-height:1.1;color:var(--ink)">{{ t.cfp.heading }}</h3>
+          <p style="color:var(--ink2);font-size:15.5px;line-height:1.75;margin-top:14px">{{ t.cfp.desc }}</p>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink);background:color-mix(in srgb, var(--ac,#EE4C2C) 16%, transparent);border:1.5px solid color-mix(in srgb, var(--ac,#EE4C2C) 45%, transparent);padding:13px 24px;border-radius:999px;margin-top:24px">{{ t.cfp.btn }} <em style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink3)">(coming soon)</em></span>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink3);margin-top:20px">{{ t.cfp.inquiryLabel }}<b style="color:var(--ink);font-weight:700">program@pytorchday.kr</b></p>
+        </div>
+
+        <div id="sponsor" style="background:linear-gradient(155deg, color-mix(in srgb, var(--c3) 15%, var(--panel)), var(--panel));border:1px solid color-mix(in srgb, var(--c3) 38%, transparent);border-radius:var(--rad,24px);padding:clamp(34px,4vw,52px)">
+          <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)"><span style="width:36px;height:2.5px;background:var(--c3);display:block"></span>Sponsorship</div>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;margin-top:18px;line-height:1.1">{{ t.sponsor.heading }}</h3>
+          <p style="color:var(--ink2);font-size:15.5px;line-height:1.75;margin-top:14px">{{ t.sponsor.desc }}</p>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink);background:color-mix(in srgb, var(--c3) 16%, transparent);border:1.5px solid color-mix(in srgb, var(--c3) 45%, transparent);padding:13px 24px;border-radius:999px;margin-top:24px">{{ t.sponsor.btn }} <em style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink3)">(coming soon)</em></span>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink3);margin-top:20px">{{ t.sponsor.inquiryLabel }}<b style="color:var(--ink);font-weight:700">sponsor@pytorchday.kr</b></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section id="venue" style="padding:clamp(72px,9vw,112px) 0;background:var(--panel)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c4)"><span style="width:36px;height:2.5px;background:var(--c4);display:block"></span>Venue</div>
+        <div style="margin-top:34px;display:flex;flex-direction:column;gap:24px">
+          <div style="display:flex;gap:16px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:var(--c3);margin-top:6px;flex:0 0 auto"></span><div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink3)">DATE</div><div style="font-size:18px;font-weight:600;margin-top:3px">{{ t.venue.dateValue }}</div></div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:var(--c4);margin-top:6px;flex:0 0 auto"></span><div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink3)">VENUE</div><div style="font-size:18px;font-weight:600;margin-top:3px">{{ t.venue.venueValue }}</div></div></div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:var(--rad,24px);overflow:hidden">
+        <iframe title="센터필드 약도" src="https://www.openstreetmap.org/export/embed.html?bbox=127.0448%2C37.5016%2C127.0528%2C37.5076&layer=mapnik&marker=37.5046%2C127.0488" width="100%" height="320" style="border:0;display:block;filter:invert(0.9) hue-rotate(180deg) brightness(0.95) contrast(0.9)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div style="padding:22px 24px">
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-size:20px;font-weight:700;display:flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:2px;background:var(--c4)"></span> {{ t.venue.mapTitle }}</h3>
+          <p style="color:var(--ink2);font-size:14.5px;margin-top:7px">{{ t.venue.mapAddress }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGANIZERS -->
+  <section id="organizers" style="padding:clamp(64px,8vw,96px) 0;background:var(--panel)">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)"><span style="width:36px;height:2.5px;background:var(--c3);display:block"></span>Organizers</div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:28px 24px;margin-top:40px">
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/park.png" alt="박정환" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName1 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/kimjiho.webp" alt="김지호" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName2 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/mindongjun.webp" alt="민동준" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName3 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/jangbowoo.webp" alt="장보우" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName4 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/janghyoyoung.png" alt="장효영" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName5 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/jungwoojun.webp" alt="정우준" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName6 }}</span>
+        </div>
+        <div style="flex:0 0 auto;width:112px;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:72px;height:72px;border-radius:12px;overflow:hidden;background:var(--bg)"><img src="organizers/josungsu.webp" alt="조성수" style="width:100%;height:100%;object-fit:cover" /></div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink)">{{ orgName7 }}</span>
+        </div>
+      </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:64px 0 38px;background:#0A0710">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px">
+        <div>
+          <sc-if value="{{ isEn }}" hint-placeholder-val="{{ false }}"><img src="logo/png/logo_en_dark.png" alt="PyTorch Korea User Group" style="height:40px;margin-bottom:16px" /></sc-if>
+          <sc-if value="{{ isKo }}" hint-placeholder-val="{{ true }}"><img src="logo/png/logo_ko_dark.png" alt="파이토치 한국 사용자 모임" style="height:28px;margin-bottom:16px" /></sc-if>
+          <p style="color:var(--ink3);font-size:14px">PyTorch Day Korea 2026</p>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">{{ t.footer.contact }}</div>
+          <a href="mailto:program@pytorchday.kr" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">{{ t.footer.speaker }}<span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3);font-weight:400">program@pytorchday.kr</span></a>
+          <a href="mailto:sponsor@pytorchday.kr" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">{{ t.footer.sponsorLabel }}<span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3);font-weight:400">sponsor@pytorchday.kr</span></a>
+          <a href="mailto:support@pytorchday.kr" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">{{ t.footer.general }}<span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3);font-weight:400">support@pytorchday.kr</span></a>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">{{ t.footer.quickLinks }}</div>
+          <a href="#about" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">About</a>
+          <a href="#topics" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Programs</a>
+          <a href="#cfp" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">CFP</a>
+          <a href="#sponsor" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sponsorship</a>
+          <a href="#venue" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Venue</a>
+          <a href="#organizers" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Organizers</a>
+          <a href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="display:block;font-size:15px;color:var(--ink2);font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Code of Conduct</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--line);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink3)">
+        <span>© 2026 PyTorch Korea User Group</span>
+        <span>pytorchday.kr</span>
+      </div>
+    </div>
+  </footer>
+
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="240" height="240" fill="#0F0A18"/>
+      <g transform="translate(88,66)" fill="none" stroke="#EE4C2C" stroke-width="11" stroke-linecap="round">
+        <path d="M32 6 L32 40"/>
+        <path d="M32 40 A42 42 0 1 0 58 50"/>
+      </g>
+      <circle cx="138" cy="92" r="7" fill="#EE4C2C"/>
+    </svg>
+  </template>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#EE4C2C&quot;, &quot;options&quot;: [&quot;#EE4C2C&quot;, &quot;#FF3D7F&quot;, &quot;#FFC24B&quot;, &quot;#34D6C8&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;},
+  &quot;confetti&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;On&quot;, &quot;Off&quot;], &quot;default&quot;: &quot;On&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;},
+  &quot;cornerStyle&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Round&quot;, &quot;Sharp&quot;], &quot;default&quot;: &quot;Round&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;}
+}">
+const TRANSLATIONS = {
+  ko: {
+    about: {
+      p1: 'PyTorch Day Korea 2026은 파이토치 한국 사용자 모임(PyTorch Korea User Group)이 처음으로 개최하는 대규모 오프라인 컨퍼런스입니다.',
+      p2: '연구부터 제품 개발, 모델 서빙, AI Application까지 PyTorch를 실제 현업과 연구 현장에서 활용해 온 엔지니어, 연구자, 개발자들이 한자리에 모여 경험과 지식을 공유합니다.',
+      p3: 'PyTorch는 딥러닝 프레임워크를 넘어 다양한 오픈소스 생태계와 연결되며 AI 개발의 중심 축으로 자리 잡고 있습니다. 모델을 학습하고, 최적화하고, 운영 환경에 배포하며, 사용자에게 가치를 전달하기까지 우리는 매일 PyTorch 위에서 새로운 가능성을 만들고 있습니다.',
+      p4: '이번 컨퍼런스는 이러한 흐름 속에서 실제 문제를 해결하며 얻은 경험과 시행착오, 그리고 실무 인사이트를 함께 나누는 자리입니다. 프로그램은 Build, Serve, Run 세 가지 트랙을 중심으로 발표가 진행됩니다.',
+      p5: '기술은 혼자 완성되지 않습니다. 아이디어가 서로의 경험과 연결될 때 더 큰 혁신이 만들어집니다.',
+      p6: 'PyTorch를 사용하는 모든 연구자, 엔지니어, 개발자가 함께 모여 배우고 연결되고 성장하는 곳으로 여러분을 초대합니다.'
+    },
+    topics: {
+      track1Desc: 'PyTorch를 사용해 AI 모델을 활용한 경험과 지식을 공유합니다. PyTorch 기반 모델 개발, 연구/개발 사례, 모델 최적화 등의 내용을 다룹니다.',
+      track2Desc: 'PyTorch 오픈소스 AI 프로젝트를 활용해 모델을 서빙한 경험과 지식을 공유합니다. GPU 및 NPU 활용, vLLM, DeepSpeed, Ray, Safetensors 적용 등의 내용을 다룹니다.',
+      track3Desc: '여러 AI Application을 만들고 제공한 경험을 공유하는 트랙입니다. 생성형 AI 응용 사례, AI Agent, edge 운영 경험 등을 다룹니다.',
+      timetableLabel: 'Timetable', comingSoon: 'coming soon'
+    },
+    cfp: {
+      heading: '발표를 제안해주세요',
+      desc: 'PyTorch와 함께한 여러분의 경험과 인사이트를 나눠주세요. CFP 상세 페이지가 곧 공개됩니다.',
+      btn: '발표 제안하기', inquiryLabel: '발표 문의 · '
+    },
+    sponsor: {
+      heading: '함께 후원해주세요',
+      desc: 'PyTorch 커뮤니티와 함께할 후원사를 모집합니다. 후원 패키지 안내가 곧 공개됩니다.',
+      btn: '후원 문의하기', inquiryLabel: '후원 문의 · '
+    },
+    venue: {
+      dateValue: '2026년 10월 31일 (토)',
+      venueValue: '센터필드 이스트 18층 · AWS 코리아, 서울',
+      mapTitle: '센터필드 이스트',
+      mapAddress: '서울 강남구 테헤란로 231 · 이스트 18층 AWS 코리아'
+    },
+    footer: {
+      contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
+    }
+  },
+  en: {
+    about: {
+      p1: 'PyTorch Day Korea 2026 is the first large-scale offline conference hosted by the PyTorch Korea User Group.',
+      p2: 'From research to product development, model serving, and AI applications, engineers, researchers, and developers who use PyTorch in the field come together to share their experience and knowledge.',
+      p3: 'PyTorch has grown beyond a deep learning framework, connecting with a broad open-source ecosystem to become a central pillar of AI development. From training and optimizing models to deploying them in production and delivering value to users, we build new possibilities on PyTorch every day.',
+      p4: 'This conference is a place to share the experiences, trial-and-error, and hands-on insights gained while solving real problems. Talks will center around three tracks: Build, Serve, and Run.',
+      p5: 'Technology isn\u2019t built alone. Ideas create greater innovation when connected to each other\u2019s experiences.',
+      p6: 'We invite every researcher, engineer, and developer using PyTorch to gather, learn, connect, and grow together.'
+    },
+    topics: {
+      track1Desc: 'Sharing experience and knowledge from building AI models with PyTorch. Covers PyTorch-based model development, research and engineering case studies, and model optimization.',
+      track2Desc: 'Sharing experience serving models with the PyTorch open-source AI ecosystem. Covers GPU and NPU usage, vLLM, DeepSpeed, Ray, and Safetensors adoption.',
+      track3Desc: 'A track for sharing experience building and running AI applications. Covers generative AI use cases, AI agents, and edge deployment experience.',
+      timetableLabel: 'Timetable', comingSoon: 'coming soon'
+    },
+    cfp: {
+      heading: 'Submit a Talk',
+      desc: 'Share your experience and insights with PyTorch on stage. The CFP details page is coming soon.',
+      btn: 'Submit a Talk', inquiryLabel: 'Speaker inquiries \u00b7 '
+    },
+    sponsor: {
+      heading: 'Become a Sponsor',
+      desc: 'We are looking for sponsors to grow with the PyTorch community. Sponsorship package details coming soon.',
+      btn: 'Sponsor Inquiries', inquiryLabel: 'Sponsor inquiries \u00b7 '
+    },
+    venue: {
+      dateValue: 'Saturday, Oct 31, 2026',
+      venueValue: 'Centerfield East 18F \u00b7 AWS Korea, Seoul',
+      mapTitle: 'Centerfield East',
+      mapAddress: '231 Teheran-ro, Gangnam-gu, Seoul \u00b7 AWS Korea, East Tower 18F'
+    },
+    footer: {
+      contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
+    }
+  }
+};
+
+class Component extends DCLogic {
+  canvasRef = React.createRef();
+  state = { activeSection: 'top', lang: 'ko', isNarrow: false, menuOpen: false };
+
+  componentDidMount() {
+    const onResize = () => {
+      const narrow = window.innerWidth < 1024;
+      this.setState(s => {
+        if (s.isNarrow === narrow) return null;
+        return narrow ? { isNarrow: true } : { isNarrow: false, menuOpen: false };
+      });
+    };
+    onResize();
+    window.addEventListener('resize', onResize);
+    this._onResizeNav = onResize;
+
+    const canvas = this.canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, DPR;
+    const COLORS = ['#FF6A3D', '#FF3D7F', '#FFC24B', '#34D6C8', '#FFFFFF', '#EE4C2C'];
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const resize = () => {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      this._dpr = DPR;
+      W = canvas.width = window.innerWidth * DPR;
+      H = canvas.height = window.innerHeight * DPR;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    let parts = [];
+    const piece = (x, y) => ({
+      x, y,
+      vx: 0, vy: 0,
+      g: rnd(0.025, 0.065) * DPR,
+      w: rnd(6, 12) * DPR,
+      h: rnd(8, 16) * DPR,
+      rot: rnd(0, 6.28),
+      vr: rnd(-0.24, 0.24),
+      sway: rnd(0, 6.28),
+      sw: rnd(0.02, 0.06),
+      col: COLORS[(Math.random() * COLORS.length) | 0],
+      life: 1,
+      decay: rnd(0.004, 0.008),
+      strip: Math.random() < 0.5
+    });
+
+    const cap = 320;
+    this._burst = (cx, cy, n) => {
+      cx = cx == null ? W * 0.5 : cx;
+      cy = cy == null ? H * 0.3 : cy;
+      n = n || 70;
+      for (let i = 0; i < n && parts.length < cap; i++) {
+        const p = piece(cx + rnd(-30, 30) * DPR, cy + rnd(-12, 12) * DPR);
+        p.vx = rnd(-1, 1) * DPR * rnd(2, 6.5);
+        p.vy = rnd(-11, -2) * DPR;
+        parts.push(p);
+      }
+    };
+    this._cannon = (cx, cy, dir) => {
+      for (let i = 0; i < 50 && parts.length < cap; i++) {
+        const p = piece(cx, cy);
+        p.vx = rnd(1.5, 7) * DPR * dir;
+        p.vy = rnd(-17, -9) * DPR;
+        parts.push(p);
+      }
+    };
+    this._celebrate = () => {
+      this._burst(W * 0.5, H * 0.26, 60);
+      this._cannon(W * 0.06, H + 6, 1);
+      this._cannon(W * 0.94, H + 6, -1);
+    };
+
+    const confettiOn = () => (this.props.confetti ?? 'On') !== 'Off';
+    this._on = confettiOn;
+    let running = true, raf;
+    const tick = () => {
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      if (confettiOn() && parts.length < 16 && Math.random() < 0.05) {
+        const p = piece(rnd(0, W), -20);
+        p.vy = rnd(0.4, 1.1) * DPR;
+        p.decay = rnd(0.0025, 0.0045);
+        parts.push(p);
+      }
+      for (let i = parts.length - 1; i >= 0; i--) {
+        const p = parts[i];
+        p.vy += p.g;
+        p.sway += p.sw;
+        p.x += p.vx + Math.sin(p.sway) * 0.6 * DPR;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.life -= p.decay;
+        if (p.y > H + 40 || p.life <= 0) { parts.splice(i, 1); continue; }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.5));
+        ctx.fillStyle = p.col;
+        const h = p.strip ? p.h * 0.4 : p.h;
+        ctx.fillRect(-p.w / 2, -h / 2, p.w, h);
+        ctx.restore();
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    document.addEventListener('visibilitychange', () => {
+      running = !document.hidden;
+      if (running) raf = requestAnimationFrame(tick);
+    });
+    setTimeout(() => { if (confettiOn()) this._celebrate(); }, 500);
+    raf = requestAnimationFrame(tick);
+
+    const ids = ['top', 'about', 'topics', 'cfp', 'venue', 'organizers'];
+    const els = ids.map(id => document.getElementById(id)).filter(Boolean);
+    const updateActive = () => {
+      const line = window.innerHeight * 0.2;
+      let current = els[0] ? els[0].id : 'top';
+      for (const el of els) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= line) current = el.id; else break;
+      }
+      const doc = document.scrollingElement || document.documentElement;
+      if (doc.scrollHeight - (window.scrollY + window.innerHeight) < 4) {
+        current = els[els.length - 1].id;
+      }
+      this.setState(s => s.activeSection === current ? null : { activeSection: current });
+    };
+    window.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive);
+    this._updateActive = updateActive;
+    updateActive();
+  }
+
+  componentWillUnmount() {
+    if (this._updateActive) {
+      window.removeEventListener('scroll', this._updateActive);
+      window.removeEventListener('resize', this._updateActive);
+    }
+    if (this._onResizeNav) window.removeEventListener('resize', this._onResizeNav);
+  }
+
+  toggleMenu = () => { this.setState(s => ({ menuOpen: !s.menuOpen })); };
+  closeMenu = () => { this.setState({ menuOpen: false }); };
+
+  setLang = (lang) => { this.setState({ lang }); };
+
+  renderVals() {
+    const accent = this.props.accent ?? '#EE4C2C';
+    const rad = (this.props.cornerStyle ?? 'Round') === 'Sharp' ? '4px' : '24px';
+    const lang = this.state.lang;
+    const t = TRANSLATIONS[lang];
+    return {
+      accent, rad, t, lang,
+      isNarrow: this.state.isNarrow,
+      isWide: !this.state.isNarrow,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      orgName1: lang === 'en' ? 'Junghwan Park' : '\ubc15\uc815\ud658',
+      orgName2: lang === 'en' ? 'Jiho Kim' : '\uae40\uc9c0\ud638',
+      orgName3: lang === 'en' ? 'Dongjun Min' : '\ubbfc\ub3d9\uc900',
+      orgName4: lang === 'en' ? 'Bowoo Jang' : '\uc7a5\ubcf4\uc6b0',
+      orgName5: lang === 'en' ? 'Hyoyoung Jang' : '\uc7a5\ud6a8\uc601',
+      orgName6: lang === 'en' ? 'Woojun Jung' : '\uc815\uc6b0\uc900',
+      orgName7: lang === 'en' ? 'Seongsoo Cho' : '\uc870\uc131\uc218',
+      isKo: lang === 'ko',
+      isEn: lang === 'en',
+      koBtnColor: lang === 'ko' ? 'var(--ink)' : 'var(--ink3)',
+      enBtnColor: lang === 'en' ? 'var(--ink)' : 'var(--ink3)',
+      setLangKo: () => this.setLang('ko'),
+      setLangEn: () => this.setLang('en'),
+      activeSection: this.state.activeSection,
+      dotTop: this.state.activeSection === 'top' ? accent : 'var(--line)',
+      dotAbout: this.state.activeSection === 'about' ? accent : 'var(--line)',
+      dotTopics: this.state.activeSection === 'topics' ? accent : 'var(--line)',
+      dotCfp: this.state.activeSection === 'cfp' ? accent : 'var(--line)',
+      dotVenue: this.state.activeSection === 'venue' ? accent : 'var(--line)',
+      dotOrganizers: this.state.activeSection === 'organizers' ? accent : 'var(--line)',
+      canvasRef: this.canvasRef,
+      yaho: () => { if (this._celebrate && (!this._on || this._on())) this._celebrate(); },
+      spark: (e) => { if (this._burst && e && e.clientX != null && (!this._on || this._on())) this._burst(e.clientX * (this._dpr || 1), e.clientY * (this._dpr || 1), 24); }
+    };
+  }
+}
+</script>
+</body>
+</html>
