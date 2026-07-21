@@ -123,11 +123,11 @@
         <a onClick="{{ closeMenu }}" href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px">Code of Conduct 🔗</a>
       </nav>
     </sc-if>
-    <div style="background:linear-gradient(90deg,color-mix(in srgb,var(--ac,#EE4C2C) 20%,var(--bg)),var(--bg) 62%);border-top:1px solid var(--line);padding:10px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+    <div style="background:linear-gradient(90deg,color-mix(in srgb,var(--ac,#EE4C2C) 40%,var(--bg)),color-mix(in srgb,var(--ac,#EE4C2C) 15%,var(--bg)) 72%);border-top:1px solid var(--line);padding:12px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px">
       <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:13.5px;color:var(--ink2)">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:14.5px;font-weight:700;color:#FF9068;display:inline-flex;align-items:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF9068;margin-right:8px;box-shadow:0 0 8px #FF9068;animation:pdk-dot 1.8s ease-in-out infinite"></span>{{ t.bar.status }}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:14.5px;font-weight:700;color:#FFE6DA;display:inline-flex;align-items:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFE6DA;margin-right:8px;box-shadow:0 0 8px #FFE6DA;animation:pdk-dot 1.8s ease-in-out infinite"></span>{{ t.bar.status }}</span>
         <span style="color:var(--ink3)">|</span>
-        <span>{{ t.bar.deadlinePrefix }} <b style="color:var(--ink)">{{ deadlineShort }}</b> <span style="color:#FF6A3D;font-family:'JetBrains Mono',monospace;font-weight:700">{{ dday }}</span></span>
+        <span>{{ t.bar.deadlinePrefix }} <b style="color:var(--ink)">{{ deadlineShort }}</b> <span style="color:#FFF0E8;font-family:'JetBrains Mono',monospace;font-weight:700">{{ dday }}</span></span>
       </div>
       <div style="display:flex;gap:9px">
         <a href="https://talk.pytorchday.kr/pytorch-day-korea-2026/cfp" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(251,247,255,.08);border-color:rgba(251,247,255,.5);box-shadow:0 0 16px rgba(251,247,255,.32)">{{ t.bar.cfp }}</a>
@@ -382,7 +382,7 @@ const TRANSLATIONS = {
     footer: {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
-    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감', cfp: '발표 제안하기', sponsor: '후원 제안서' }
+    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감', cfp: '발표 제안서', sponsor: '후원 제안서' }
   },
   en: {
     about: {
@@ -418,7 +418,7 @@ const TRANSLATIONS = {
     footer: {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
-    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline', cfp: 'Submit a Talk', sponsor: 'Sponsorship' }
+    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline', cfp: 'Talk Proposal', sponsor: 'Sponsor Proposal' }
   }
 };
 
