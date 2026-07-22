@@ -45,10 +45,12 @@
   @keyframes pdk-mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @keyframes pdk-mq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
   @keyframes pdk-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+  @keyframes pdk-sweep{0%{left:-40%}70%,100%{left:125%}}
+  .pdk-barbtn:hover{background:rgba(255,255,255,.22)!important;border-color:rgba(255,255,255,.75)!important;box-shadow:0 0 18px rgba(255,255,255,.4)!important;color:var(--ink)!important}
 </style>
 </helmet>
 
-<div style="--bg:#0F0A18;--panel:#1A1228;--panel2:#241836;--line:rgba(251,247,255,.12);--ink:#FBF7FF;--ink2:rgba(251,247,255,.66);--ink3:rgba(251,247,255,.42);--c1:#FF6A3D;--c2:#FF3D7F;--c3:#FFC24B;--c4:#34D6C8;--ac:{{ accent }};--rad:{{ rad }};position:relative;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,sans-serif;line-height:1.6;overflow-x:hidden">
+<div style="--bg:#0F0A18;--panel:#1A1228;--panel2:#241836;--line:rgba(251,247,255,.12);--ink:#FBF7FF;--ink2:rgba(251,247,255,.66);--ink3:rgba(251,247,255,.42);--c1:#FF6A3D;--c2:#FF3D7F;--c3:#FFC24B;--c4:#34D6C8;--ac:{{ accent }};--rad:{{ rad }};position:relative;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,sans-serif;line-height:1.6;overflow-x:clip">
 
   <canvas ref="{{ canvasRef }}" style="position:fixed;inset:0;pointer-events:none;z-index:45"></canvas>
 
@@ -123,15 +125,17 @@
         <a onClick="{{ closeMenu }}" href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px">Code of Conduct 🔗</a>
       </nav>
     </sc-if>
-    <div style="background:linear-gradient(90deg,color-mix(in srgb,var(--ac,#EE4C2C) 40%,var(--bg)),color-mix(in srgb,var(--ac,#EE4C2C) 15%,var(--bg)) 72%);border-top:1px solid var(--line);padding:12px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px">
-      <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:13.5px;color:var(--ink2)">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:14.5px;font-weight:700;color:#FFE6DA;display:inline-flex;align-items:center"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFE6DA;margin-right:8px;box-shadow:0 0 8px #FFE6DA;animation:pdk-dot 1.8s ease-in-out infinite"></span>{{ t.bar.status }}</span>
-        <span style="color:var(--ink3)">|</span>
-        <span>{{ t.bar.deadlinePrefix }} <b style="color:var(--ink)">{{ deadlineShort }}</b> <span style="color:#FFF0E8;font-family:'JetBrains Mono',monospace;font-weight:700">{{ dday }}</span></span>
-      </div>
-      <div style="display:flex;gap:9px">
-        <a href="https://talk.pytorchday.kr/pytorch-day-korea-2026/cfp" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(251,247,255,.08);border-color:rgba(251,247,255,.5);box-shadow:0 0 16px rgba(251,247,255,.32)">{{ t.bar.cfp }}</a>
-        <a href="PyTorchKR-2026-Sponsorship.pdf" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(251,247,255,.08);border-color:rgba(251,247,255,.5);box-shadow:0 0 16px rgba(251,247,255,.32)">{{ t.bar.sponsor }}</a>
+    <div style="position:relative;overflow:hidden;background:#D63916;border-top:1px solid var(--line);padding:12px 32px">
+      <div style="position:absolute;top:0;bottom:0;width:26%;left:-40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-18deg);animation:pdk-sweep 6s ease-in-out infinite;pointer-events:none"></div>
+      <div style="position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px">
+        <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:15px;color:#fff">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#fff;display:inline-flex;align-items:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#fff;margin-right:9px;box-shadow:0 0 8px rgba(255,255,255,.8);animation:pdk-dot 1.8s ease-in-out infinite"></span>{{ t.bar.status }}</span>
+          <span style="opacity:.45">|</span>
+          <span>{{ t.bar.deadlinePrefix }} <b style="color:#fff">{{ deadlineShort }}</b> <span style="color:#fff;font-family:'JetBrains Mono',monospace;font-weight:700">{{ dday }}</span></span>
+        </div>
+        <div style="display:flex;gap:9px">
+        <a href="https://talk.pytorchday.kr/pytorch-day-korea-2026/cfp" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.cfp }}</a>
+        <a href="PyTorchKR-2026-Sponsorship.pdf" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.sponsor }}</a>
       </div>
     </div>
   </header>
