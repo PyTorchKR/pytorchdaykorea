@@ -580,10 +580,10 @@ class Component extends DCLogic {
     const rad = (this.props.cornerStyle ?? 'Round') === 'Sharp' ? '4px' : '24px';
     const lang = this.state.lang;
     const t = TRANSLATIONS[lang];
-    const dl = new Date(2026, 7, 22, 23, 59, 59);
+    const dl = new Date(2026, 8, 13, 23, 59, 59);
     const _days = Math.max(0, Math.ceil((dl - new Date()) / 86400000));
     const dday = _days === 0 ? 'D-DAY' : 'D-' + _days;
-    const deadlineShort = lang === 'en' ? 'Aug 22' : '8.22 (토)';
+    const deadlineShort = lang === 'en' ? 'Sep 13' : '9.13 (일)';
     return {
       accent, rad, t, lang, dday, deadlineShort,
       isNarrow: this.state.isNarrow,
