@@ -525,11 +525,17 @@ class Component extends DCLogic {
 
     const confettiOn = () => (this.props.confetti ?? 'On') !== 'Off';
     this._on = confettiOn;
-    let running = true, raf;
-    const tick = () => {
+    let running = true, raf, last = 0;
+    // Motion values are tuned per 60fps frame; scale by elapsed time so
+    // 120Hz/144Hz displays don't run the animation 2x+ faster.
+    // SPEED is a global playback multiplier (1 = original 60fps pace).
+    const SPEED = 1.3;
+    const tick = (now) => {
       if (!running) return;
+      const dt = (last ? Math.min((now - last) / (1000 / 60), 3) : 1) * SPEED;
+      last = now;
       ctx.clearRect(0, 0, W, H);
-      if (confettiOn() && parts.length < 16 && Math.random() < 0.05) {
+      if (confettiOn() && parts.length < 16 && Math.random() < 0.05 * dt) {
         const p = piece(rnd(0, W), -20);
         p.vy = rnd(0.4, 1.1) * DPR;
         p.decay = rnd(0.0025, 0.0045);
@@ -537,12 +543,12 @@ class Component extends DCLogic {
       }
       for (let i = parts.length - 1; i >= 0; i--) {
         const p = parts[i];
-        p.vy += p.g;
-        p.sway += p.sw;
-        p.x += p.vx + Math.sin(p.sway) * 0.6 * DPR;
-        p.y += p.vy;
-        p.rot += p.vr;
-        p.life -= p.decay;
+        p.vy += p.g * dt;
+        p.sway += p.sw * dt;
+        p.x += (p.vx + Math.sin(p.sway) * 0.6 * DPR) * dt;
+        p.y += p.vy * dt;
+        p.rot += p.vr * dt;
+        p.life -= p.decay * dt;
         if (p.y > H + 40 || p.life <= 0) { parts.splice(i, 1); continue; }
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -555,9 +561,17 @@ class Component extends DCLogic {
       }
       raf = requestAnimationFrame(tick);
     };
+    // Cancel the pending frame on hide and only restart when actually
+    // stopped, otherwise each hide/show cycle stacks another loop.
     document.addEventListener('visibilitychange', () => {
-      running = !document.hidden;
-      if (running) raf = requestAnimationFrame(tick);
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(raf);
+      } else if (!running) {
+        running = true;
+        last = 0;
+        raf = requestAnimationFrame(tick);
+      }
     });
     setTimeout(() => { if (confettiOn()) this._celebrate(); }, 500);
     raf = requestAnimationFrame(tick);
