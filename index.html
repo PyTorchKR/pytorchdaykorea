@@ -135,6 +135,7 @@
         <a onClick="{{ closeMenu }}" href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px">Code of Conduct 🔗</a>
       </nav>
     </sc-if>
+    <sc-if value="{{ cfpOpen }}" hint-placeholder-val="{{ true }}">
     <div style="position:relative;overflow:hidden;background:#D63916;border-top:1px solid var(--line);padding:12px 32px">
       <div style="position:absolute;top:0;bottom:0;width:26%;left:-40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-18deg);animation:pdk-sweep 6s ease-in-out infinite;pointer-events:none"></div>
       <div style="position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px">
@@ -148,6 +149,7 @@
         <a href="PyTorchKR-2026-Sponsorship.pdf?v=20260814" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.sponsor }}</a>
       </div>
     </div>
+    </sc-if>
   </header>
 
   <!-- HERO -->
@@ -235,9 +237,14 @@
 
         <div style="background:linear-gradient(155deg, color-mix(in srgb, var(--ac,#EE4C2C) 15%, var(--panel)), var(--panel));border:1px solid color-mix(in srgb, var(--ac,#EE4C2C) 38%, transparent);border-radius:var(--rad,24px);padding:clamp(34px,4vw,52px)">
           <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac,#EE4C2C)"><span style="width:36px;height:2.5px;background:var(--ac,#EE4C2C);display:block"></span>CFP</div>
-          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;margin-top:18px;line-height:1.1;color:var(--ink)">{{ t.cfp.heading }}</h3>
-          <p style="color:var(--ink2);font-size:15.5px;line-height:1.75;margin-top:14px">{{ t.cfp.desc }}</p>
+          <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;margin-top:18px;line-height:1.1;color:var(--ink)">{{ cfpHeading }}</h3>
+          <p style="color:var(--ink2);font-size:15.5px;line-height:1.75;margin-top:14px">{{ cfpDesc }}</p>
+          <sc-if value="{{ cfpOpen }}" hint-placeholder-val="{{ true }}">
           <a href="https://talk.pytorchday.kr/pytorch-day-korea-2026/cfp" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink);background:color-mix(in srgb, var(--ac,#EE4C2C) 16%, transparent);border:1.5px solid color-mix(in srgb, var(--ac,#EE4C2C) 45%, transparent);padding:13px 24px;border-radius:999px;margin-top:24px;text-decoration:none" style-hover="background:color-mix(in srgb, var(--ac,#EE4C2C) 30%, transparent)">{{ t.cfp.btn }} 🔗</a>
+          </sc-if>
+          <sc-if value="{{ cfpClosed }}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink3);background:transparent;border:1.5px solid var(--line);padding:13px 24px;border-radius:999px;margin-top:24px;cursor:default">{{ t.cfp.btnClosed }}</span>
+          </sc-if>
           <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink3);margin-top:20px">{{ t.cfp.inquiryLabel }}<b style="color:var(--ink);font-weight:700"><a href="mailto:session@pytorchday.kr">session@pytorchday.kr</a></b></p>
         </div>
 
@@ -380,7 +387,9 @@ const TRANSLATIONS = {
     cfp: {
       heading: '발표를 제안해주세요',
       desc: 'PyTorch와 함께한 여러분의 경험과 인사이트를 나눠주세요. 아래 버튼을 눌러 발표를 제안해주세요.',
-      btn: '발표 제안하기', inquiryLabel: '발표 문의 · '
+      headingClosed: '발표 접수가 마감되었습니다',
+      descClosed: '발표 제안에 관심 가져주신 모든 분께 감사드립니다. 발표 관련 문의는 아래 이메일로 보내주세요.',
+      btn: '발표 제안하기', btnClosed: '접수 마감', inquiryLabel: '발표 문의 · '
     },
     sponsor: {
       heading: '함께 후원해주세요',
@@ -396,7 +405,7 @@ const TRANSLATIONS = {
     footer: {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
-    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감', cfp: '발표 제안서', sponsor: '후원 제안서' }
+    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감',cfp: '발표 제안서', sponsor: '후원 제안서' }
   },
   en: {
     about: {
@@ -416,7 +425,9 @@ const TRANSLATIONS = {
     cfp: {
       heading: 'Submit a Talk',
       desc: 'Share your experience and insights with PyTorch on stage. Click the button below to submit your proposal.',
-      btn: 'Submit a Talk', inquiryLabel: 'Speaker inquiries \u00b7 '
+      headingClosed: 'CFP is Closed',
+      descClosed: 'Thank you to everyone who submitted a proposal. For speaker-related questions, please reach out via the email below.',
+      btn: 'Submit a Talk', btnClosed: 'Submissions Closed', inquiryLabel: 'Speaker inquiries \u00b7 '
     },
     sponsor: {
       heading: 'Become a Sponsor',
@@ -432,7 +443,7 @@ const TRANSLATIONS = {
     footer: {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
-    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline', cfp: 'Talk Proposal', sponsor: 'Sponsor Proposal' }
+    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline',cfp: 'Talk Proposal', sponsor: 'Sponsor Proposal' }
   }
 };
 
@@ -590,12 +601,16 @@ class Component extends DCLogic {
     const rad = (this.props.cornerStyle ?? 'Round') === 'Sharp' ? '4px' : '24px';
     const lang = this.state.lang;
     const t = TRANSLATIONS[lang];
-    const dl = new Date(2026, 8, 13, 23, 59, 59);
-    const _days = Math.max(0, Math.ceil((dl - new Date()) / 86400000));
+    const now = new Date();
+    const cfpClosed = now > new Date(2026, 8, 13, 23, 59, 59);
+    const _days = Math.round((new Date(2026, 8, 13) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
     const dday = _days === 0 ? 'D-DAY' : 'D-' + _days;
     const deadlineShort = lang === 'en' ? 'Sep 13' : '9.13 (일)';
     return {
       accent, rad, t, lang, dday, deadlineShort,
+      cfpOpen: !cfpClosed, cfpClosed,
+      cfpHeading: cfpClosed ? t.cfp.headingClosed : t.cfp.heading,
+      cfpDesc: cfpClosed ? t.cfp.descClosed : t.cfp.desc,
       isNarrow: this.state.isNarrow,
       isWide: !this.state.isNarrow,
       koLogoH: this.state.isNarrow ? '22px' : '26px',
