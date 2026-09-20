@@ -616,10 +616,10 @@ class Component extends DCLogic {
     const lang = this.state.lang;
     const t = TRANSLATIONS[lang];
     const now = new Date();
-    const cfpClosed = now > new Date(2026, 8, 13, 23, 59, 59);
-    const _days = Math.round((new Date(2026, 8, 13) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+    const cfpClosed = now > new Date(2026, 9, 2, 23, 59, 59);
+    const _days = Math.round((new Date(2026, 9, 2) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
     const dday = _days === 0 ? 'D-DAY' : 'D-' + _days;
-    const deadlineShort = lang === 'en' ? 'Sep 13' : '9.13 (일)';
+    const deadlineShort = lang === 'en' ? 'Oct 2' : '10.2 (금)';
     return {
       accent, rad, t, lang, dday, deadlineShort,
       cfpOpen: !cfpClosed, cfpClosed,
