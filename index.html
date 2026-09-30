@@ -86,6 +86,10 @@
       <span style="width:9px;height:9px;border-radius:50%;background:{{ dotVenue }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
       <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Venue</span>
     </a>
+    <a href="#sponsors" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
+      <span style="width:9px;height:9px;border-radius:50%;background:{{ dotSponsors }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Sponsors</span>
+    </a>
     <a href="#organizers" style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;position:relative;--lbl:0" style-hover="--lbl:1">
       <span style="width:9px;height:9px;border-radius:50%;background:{{ dotOrganizers }};transition:background .2s ease,transform .2s ease" style-hover="transform:scale(1.3)"></span>
       <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:var(--lbl,0);pointer-events:none;transition:opacity .15s ease">Organizers</span>
@@ -105,8 +109,8 @@
             <a href="#about" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">About</a>
             <a href="#topics" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Programs</a>
             <a href="#cfp" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">CFP</a>
-            <a href="#sponsor" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Sponsorship</a>
             <a href="#venue" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Venue</a>
+            <a href="#sponsors" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Sponsors</a>
             <a href="#organizers" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Organizers</a>
             <a href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="font-size:14.5px;font-weight:500;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;gap:5px" style-hover="color:var(--ink)">Code of Conduct 🔗</a>
           </nav>
@@ -129,8 +133,8 @@
         <a onClick="{{ closeMenu }}" href="#about" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">About</a>
         <a onClick="{{ closeMenu }}" href="#topics" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Programs</a>
         <a onClick="{{ closeMenu }}" href="#cfp" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">CFP</a>
-        <a onClick="{{ closeMenu }}" href="#sponsor" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Sponsorship</a>
         <a onClick="{{ closeMenu }}" href="#venue" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Venue</a>
+        <a onClick="{{ closeMenu }}" href="#sponsors" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Sponsors</a>
         <a onClick="{{ closeMenu }}" href="#organizers" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Organizers</a>
         <a onClick="{{ closeMenu }}" href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink2);display:inline-flex;align-items:center;gap:6px">Code of Conduct 🔗</a>
       </nav>
@@ -146,7 +150,6 @@
         </div>
         <div style="display:flex;gap:9px">
         <a href="https://talk.pytorchday.kr/pytorch-day-korea-2026/cfp" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.cfp }}</a>
-        <a href="PyTorchKR-2026-Sponsorship.pdf?v=20260814" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.sponsor }}</a>
       </div>
     </div>
     </sc-if>
@@ -252,7 +255,7 @@
           <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)"><span style="width:36px;height:2.5px;background:var(--c3);display:block"></span>Sponsorship</div>
           <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;margin-top:18px;line-height:1.1">{{ t.sponsor.heading }}</h3>
           <p style="color:var(--ink2);font-size:15.5px;line-height:1.75;margin-top:14px">{{ t.sponsor.desc }}</p>
-          <a href="PyTorchKR-2026-Sponsorship.pdf?v=20260814" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink);background:color-mix(in srgb, var(--c3) 16%, transparent);border:1.5px solid color-mix(in srgb, var(--c3) 45%, transparent);padding:13px 24px;border-radius:999px;margin-top:24px;text-decoration:none" style-hover="background:color-mix(in srgb, var(--c3) 30%, transparent)">{{ t.sponsor.btn }} 🔗</a>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--ink3);background:transparent;border:1.5px solid var(--line);padding:13px 24px;border-radius:999px;margin-top:24px;cursor:default">{{ t.sponsor.btnClosed }}</span>
           <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink3);margin-top:20px">{{ t.sponsor.inquiryLabel }}<b style="color:var(--ink);font-weight:700"><a href="mailto:sponsor@pytorchday.kr">sponsor@pytorchday.kr</a></b></p>
         </div>
 
@@ -277,6 +280,31 @@
           <p style="color:var(--ink2);font-size:14.5px;margin-top:7px">{{ t.venue.mapAddress }}</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS — 등급 순서: Gold → Silver → Startup → Community, 같은 등급 안에서는 입금 순서 -->
+  <section id="sponsors" style="padding:clamp(72px,9vw,112px) 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)"><span style="width:36px;height:2.5px;background:var(--c3);display:block"></span>Sponsors</div>
+
+      <!-- Gold: 아직 없음 -->
+
+      <div style="margin-top:48px">
+        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Silver</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:40px 72px;margin-top:40px">
+          <img src="logo/sponsor/NotaAI.png?v=20260930" alt="Nota AI" style="height:clamp(38px,5vw,56px);width:auto" />
+        </div>
+      </div>
+
+      <div style="margin-top:64px">
+        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Startup</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px 64px;margin-top:36px">
+          <img src="logo/sponsor/team-attention.png?v=20260930" alt="Team Attention" style="height:clamp(34px,4.4vw,50px);width:auto" />
+        </div>
+      </div>
+
+      <!-- Community: 아직 없음 -->
     </div>
   </section>
 
@@ -338,8 +366,8 @@
           <a href="#about" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">About</a>
           <a href="#topics" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Programs</a>
           <a href="#cfp" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">CFP</a>
-          <a href="#sponsor" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sponsorship</a>
           <a href="#venue" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Venue</a>
+          <a href="#sponsors" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sponsors</a>
           <a href="#organizers" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Organizers</a>
           <a href="https://pytorch.kr/coc/" target="_blank" rel="noopener" style="display:block;font-size:15px;color:var(--ink2);font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Code of Conduct</a>
         </div>
@@ -392,9 +420,9 @@ const TRANSLATIONS = {
       btn: '발표 제안하기', btnClosed: '접수 마감', inquiryLabel: '발표 문의 · '
     },
     sponsor: {
-      heading: '함께 후원해주세요',
-      desc: 'PyTorchKR 커뮤니티와 함께할 후원사를 모집합니다. 후원 패키지 안내가 곧 공개됩니다.',
-      btn: '후원 문의하기', inquiryLabel: '후원 문의 · '
+      heading: '후원사 모집이 마감되었습니다',
+      desc: 'PyTorch Day Korea 2026 후원에 관심 가져주신 모든 분께 감사드립니다. 후원 관련 문의는 아래 이메일로 보내주세요.',
+      btnClosed: '모집 마감', inquiryLabel: '후원 문의 · '
     },
     venue: {
       dateValue: '2026년 11월 21일 (토)',
@@ -405,7 +433,7 @@ const TRANSLATIONS = {
     footer: {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
-    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감',cfp: '발표 제안서', sponsor: '후원 제안서' }
+    bar: { status: 'CFP 접수 중', deadlinePrefix: '발표 접수 마감',cfp: '발표 제안서' }
   },
   en: {
     about: {
@@ -430,9 +458,9 @@ const TRANSLATIONS = {
       btn: 'Submit a Talk', btnClosed: 'Submissions Closed', inquiryLabel: 'Speaker inquiries \u00b7 '
     },
     sponsor: {
-      heading: 'Become a Sponsor',
-      desc: 'We are looking for sponsors to grow with the PyTorchKR community. Sponsorship package details coming soon.',
-      btn: 'Sponsor Inquiries', inquiryLabel: 'Sponsor inquiries \u00b7 '
+      heading: 'Sponsorship is Closed',
+      desc: 'Thank you to everyone who showed interest in sponsoring PyTorch Day Korea 2026. For sponsor-related questions, please reach out via the email below.',
+      btnClosed: 'Sponsorship Closed', inquiryLabel: 'Sponsor inquiries \u00b7 '
     },
     venue: {
       dateValue: 'Saturday, Nov 21, 2026',
@@ -443,7 +471,7 @@ const TRANSLATIONS = {
     footer: {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
-    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline',cfp: 'Talk Proposal', sponsor: 'Sponsor Proposal' }
+    bar: { status: 'CFP Open', deadlinePrefix: 'Talk deadline',cfp: 'Talk Proposal' }
   }
 };
 
@@ -576,7 +604,7 @@ class Component extends DCLogic {
     setTimeout(() => { if (confettiOn()) this._celebrate(); }, 500);
     raf = requestAnimationFrame(tick);
 
-    const ids = ['top', 'about', 'topics', 'cfp', 'venue', 'organizers'];
+    const ids = ['top', 'about', 'topics', 'cfp', 'venue', 'sponsors', 'organizers'];
     const els = ids.map(id => document.getElementById(id)).filter(Boolean);
     const updateActive = () => {
       const line = window.innerHeight * 0.2;
@@ -653,6 +681,7 @@ class Component extends DCLogic {
       dotTopics: this.state.activeSection === 'topics' ? accent : 'var(--line)',
       dotCfp: this.state.activeSection === 'cfp' ? accent : 'var(--line)',
       dotVenue: this.state.activeSection === 'venue' ? accent : 'var(--line)',
+      dotSponsors: this.state.activeSection === 'sponsors' ? accent : 'var(--line)',
       dotOrganizers: this.state.activeSection === 'organizers' ? accent : 'var(--line)',
       canvasRef: this.canvasRef,
       yaho: () => { if (this._celebrate && (!this._on || this._on())) this._celebrate(); },
