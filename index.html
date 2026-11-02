@@ -306,47 +306,32 @@
     <div style="max-width:1240px;margin:0 auto;padding:0 32px">
       <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)"><span style="width:36px;height:2.5px;background:var(--c3);display:block"></span>Sponsors</div>
 
-      <!-- Platinum: 아직 없음 -->
-
-      <div style="margin-top:48px">
-        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Gold</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:44px 80px;margin-top:44px">
-          <img src="logo/sponsor/nvidia.png?v=20261027" alt="NVIDIA" style="height:clamp(46px,6vw,68px);width:auto" />
+      <!-- 후원사·출판사 목록은 아래 스크립트의 SPONSOR_TIERS / PUBLISHERS에서 관리 -->
+      <sc-for list="{{ sponsorTiers }}" as="tier">
+        <div style="margin-top:{{ tier.top }}">
+          <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">{{ tier.name }}</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:{{ tier.gap }};margin-top:{{ tier.mt }}">
+            <sc-for list="{{ tier.items }}" as="sp">
+              <button onClick="{{ sp.open }}" aria-label="{{ sp.name }}" style="background:none;border:none;padding:6px;cursor:pointer;transition:transform .2s ease,opacity .2s ease" style-hover="transform:translateY(-3px);opacity:.85">
+                <img src="{{ sp.logo }}" alt="{{ sp.name }}" style="height:{{ sp.h }};width:auto" />
+              </button>
+            </sc-for>
+          </div>
         </div>
-      </div>
+      </sc-for>
 
-      <div style="margin-top:64px">
-        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Silver</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:40px 72px;margin-top:40px">
-          <img src="logo/sponsor/NotaAI.png?v=20260930" alt="Nota AI" style="height:clamp(38px,5vw,56px);width:auto" />
-          <img src="logo/sponsor/aieev.png?v=20261016" alt="aieev" style="height:clamp(42px,5.4vw,60px);width:auto" />
-          <img src="logo/sponsor/runpod.png?v=20261027" alt="Runpod" style="height:clamp(40px,5.2vw,58px);width:auto" />
+      <sc-if value="{{ hasPublishers }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:64px">
+          <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Publishers</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px 56px;margin-top:36px">
+            <sc-for list="{{ publishers }}" as="pb">
+              <button onClick="{{ pb.open }}" aria-label="{{ pb.name }}" style="background:none;border:none;padding:6px;cursor:pointer;transition:transform .2s ease,opacity .2s ease" style-hover="transform:translateY(-3px);opacity:.85">
+                <img src="{{ pb.logo }}" alt="{{ pb.name }}" style="height:{{ pb.h }};width:auto" />
+              </button>
+            </sc-for>
+          </div>
         </div>
-      </div>
-
-      <div style="margin-top:64px">
-        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Startup</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px 64px;margin-top:36px">
-          <img src="logo/sponsor/team-attention.png?v=20260930" alt="Team Attention" style="height:clamp(34px,4.4vw,50px);width:auto" />
-        </div>
-      </div>
-
-      <!-- Community: 아직 없음. Community · Event Partner · T-shirt는 같은 크기 (로고 높이 clamp(30px,3.8vw,42px), gap 32px 56px) -->
-
-      <div style="margin-top:64px">
-        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">Event Partner</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px 56px;margin-top:36px">
-          <img src="logo/sponsor/aws.png?v=20261027" alt="AWS" style="height:clamp(40px,5vw,56px);width:auto" />
-          <img src="logo/sponsor/nipa.png?v=20261027" alt="NIPA 정보통신산업진흥원" style="height:clamp(40px,5vw,56px);width:auto" />
-        </div>
-      </div>
-
-      <div style="margin-top:64px">
-        <div style="display:flex;align-items:center;gap:20px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">T-shirt Sponsor</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px 56px;margin-top:36px">
-          <img src="logo/sponsor/shinzu.png?v=20261027" alt="Shinzu" style="height:clamp(30px,3.8vw,42px);width:auto" />
-        </div>
-      </div>
+      </sc-if>
     </div>
   </section>
 
@@ -387,6 +372,42 @@
       </div>
     </div>
   </section>
+
+  <!-- 후원사·출판사 상세 팝업 -->
+  <sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeDetail }}" style="position:fixed;inset:0;z-index:100;background:rgba(10,7,16,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px">
+      <div onClick="{{ stopClick }}" role="dialog" aria-modal="true" aria-label="{{ detail.name }}" style="position:relative;width:100%;max-width:620px;max-height:calc(100vh - 32px);overflow-y:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--rad,24px);padding:clamp(28px,4vw,44px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8)">
+        <button onClick="{{ closeDetail }}" aria-label="{{ t.detail.close }}" style="position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:none;border:1px solid var(--line);color:var(--ink2);font-size:20px;line-height:1;cursor:pointer" style-hover="color:var(--ink);border-color:var(--ink3)">&times;</button>
+        <div style="display:flex;align-items:center;justify-content:center;min-height:clamp(140px,22vw,200px);margin-top:28px;padding:28px;border:1px solid var(--line);border-radius:calc(var(--rad,24px) * .6);background:var(--bg)">
+          <img src="{{ detail.logo }}" alt="{{ detail.name }}" style="max-height:clamp(56px,9vw,88px);width:auto" />
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3);margin-top:24px">{{ detail.label }}</div>
+        <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(24px,3vw,30px);letter-spacing:-.01em;line-height:1.2;color:var(--ink);margin-top:8px">{{ detail.name }}</h3>
+        <sc-if value="{{ detail.hasDesc }}" hint-placeholder-val="{{ true }}">
+          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:12px;white-space:pre-line">{{ detail.desc }}</p>
+        </sc-if>
+        <sc-if value="{{ detail.hasBooks }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-top:28px">{{ t.detail.books }}</div>
+          <ul style="list-style:none;margin:10px 0 0;padding:0">
+            <sc-for list="{{ detail.books }}" as="b">
+              <li style="padding:12px 0;border-top:1px solid var(--line)">
+                <a href="{{ b.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px" style-hover="color:var(--ac,#EE4C2C)">
+                  <sc-if value="{{ b.cover }}" hint-placeholder-val="{{ false }}"><img src="{{ b.cover }}" alt="" style="width:44px;height:auto;border-radius:4px;flex:0 0 auto" /></sc-if>
+                  <span style="display:block">
+                    <span style="display:block;font-size:15px;font-weight:700;line-height:1.45">{{ b.title }}</span>
+                    <span style="display:block;font-size:13px;color:var(--ink3);margin-top:3px">{{ b.author }}</span>
+                  </span>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ detail.url }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;justify-content:flex-end;margin-top:28px"><a href="{{ detail.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne','Pretendard',sans-serif;font-weight:700;font-size:15px;color:#fff;background:var(--ac,#EE4C2C);padding:13px 24px;border-radius:999px" style-hover="filter:brightness(1.1)">{{ t.detail.homepage }} ↗</a></div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
 
   <!-- FOOTER -->
   <footer style="padding:64px 0 38px;background:#0A0710">
@@ -476,6 +497,7 @@ const TRANSLATIONS = {
     footer: {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
+    detail: { homepage: '홈페이지 바로가기', books: '후원 도서', close: '닫기', publisher: 'Publisher' },
     bar: { status: '참가 신청 접수 중', register: '참가 신청하기' }
   },
   en: {
@@ -515,13 +537,42 @@ const TRANSLATIONS = {
     footer: {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
+    detail: { homepage: 'Visit Website', books: 'Sponsored Books', close: 'Close', publisher: 'Publisher' },
     bar: { status: 'Registration Open', register: 'Register Now' }
   }
 };
 
+// 후원사 — 등급 순서: Platinum → Gold → Silver → Startup → Community → Event Partner → T-shirt, 같은 등급 안에서는 입금 순서.
+// Startup까지는 아래로 갈수록 로고 크기를 줄이고, Community부터는 같은 크기 (clamp(30px,3.8vw,42px), gap 32px 56px).
+// desc는 { ko, en } — 비어 있으면 팝업에서 소개 문단을 숨기고, en이 비어 있으면 ko를 보여줌. url이 비어 있으면 바로가기 버튼을 숨김.
+const SPONSOR_TIERS = [
+  { name: 'Gold', gap: '44px 80px', mt: '44px', items: [
+    { id: 'nvidia', name: 'NVIDIA', logo: 'logo/sponsor/nvidia.png?v=20261027', h: 'clamp(46px,6vw,68px)', url: 'https://www.nvidia.com/', desc: { ko: 'NVIDIA는 가속 컴퓨팅을 개척한 기업입니다. GPU와 시스템, 소프트웨어까지 AI 인프라 전반을 만들며, AI와 디지털 트윈 기술로 세계 주요 산업의 혁신을 이끌고 있습니다.', en: 'NVIDIA pioneered accelerated computing. It builds the full stack of AI infrastructure, from GPUs and systems to software, and its work in AI and digital twins is transforming the world\'s largest industries.' } }
+  ] },
+  { name: 'Silver', gap: '40px 72px', mt: '40px', items: [
+    { id: 'nota-ai', name: 'Nota AI', logo: 'logo/sponsor/NotaAI.png?v=20260930', h: 'clamp(38px,5vw,56px)', url: 'https://www.nota.ai/', desc: { ko: '노타AI는 모델 최적화 플랫폼 NetsPresso®, 산업별 AI 솔루션을 제공하며 "High-performance AI on Any Device"를 내걸고 온디바이스 AI를 현실로 만듭니다.', en: 'Nota AI provides NetsPresso®, an AI model optimization platform, along with industry-specific AI solutions, turning on-device AI into reality under the banner of "High-performance AI on Any Device."' } },
+    { id: 'aieev', name: 'aieev', logo: 'logo/sponsor/aieev.png?v=20261016', h: 'clamp(42px,5.4vw,60px)', url: 'https://www.aieev.com/ko', desc: { ko: 'AIEEV는 AI 추론을 위한 분산 GPU 클라우드 Air Cloud를 운영합니다. 분산 GPU 인프라를 바탕으로 AI 추론 비용을 최대 80%까지 절감하고, 몇 초 만에 배포해 수요에 맞춰 유연하게 확장할 수 있도록 지원합니다.', en: 'AIEEV runs Air Cloud, a distributed GPU cloud built for AI inference. Its distributed GPU infrastructure cuts AI inference costs by up to 80%, letting teams deploy in seconds and scale on demand.' } },
+    { id: 'runpod', name: 'Runpod', logo: 'logo/sponsor/runpod.png?v=20261027', h: 'clamp(40px,5.2vw,58px)', url: 'https://www.runpod.io/', desc: { ko: 'Runpod는 개발자, 연구자, AI 기업에 온디맨드 GPU를 제공하는 AI 개발 클라우드입니다. 실험부터 학습, 파인튜닝, 배포, 확장까지 하나의 플랫폼에서 지원합니다.', en: 'Runpod is the AI developer cloud, giving developers, researchers, and AI companies on-demand GPUs. Experiment, train, fine-tune, deploy, and scale on one platform.' } }
+  ] },
+  { name: 'Startup', gap: '36px 64px', mt: '36px', items: [
+    { id: 'team-attention', name: 'Team Attention', logo: 'logo/sponsor/team-attention.png?v=20260930', h: 'clamp(34px,4.4vw,50px)', url: 'https://team-attention.com/', desc: { ko: 'Team Attention은 독립 연구자를 지원하는 독립 연구소입니다. 독립 연구자에게 연구 자금과 컴퓨팅 크레딧, 기업 연계를 지원합니다. 서울, 샌프란시스코, 싱가포르 등에서 OpenAI, Anthropic 같은 파트너와 함께 ralphthon 등 해커톤을 열며 독립 연구자들이 모이는 자리를 만들고 있습니다.', en: 'Team Attention is an independent research institute that supports independent researchers. It provides funding, compute credits, and connections to companies. It also hosts hackathons such as ralphthon in Seoul, San Francisco, Singapore, and beyond with partners like OpenAI and Anthropic, bringing independent researchers together.' } }
+  ] },
+  { name: 'Event Partner', gap: '32px 56px', mt: '36px', items: [
+    { id: 'aws', name: 'AWS', logo: 'logo/sponsor/aws.png?v=20261027', h: 'clamp(40px,5vw,56px)', url: 'https://aws.amazon.com/', desc: { ko: 'Amazon Web Services(AWS)는 전 세계에서 가장 널리 쓰이는 클라우드 플랫폼입니다. 컴퓨팅과 스토리지부터 AI·머신러닝까지 폭넓은 서비스를 제공하며, 스타트업부터 대기업과 공공기관까지 수많은 고객이 AWS 위에서 서비스를 만들고 있습니다.', en: 'Amazon Web Services (AWS) is the world\'s most broadly adopted cloud platform. It offers a wide range of services, from compute and storage to AI and machine learning, and customers from startups to large enterprises and public agencies build on AWS.' } },
+    { id: 'nipa', name: 'NIPA 정보통신산업진흥원', nameEn: 'NIPA', logo: 'logo/sponsor/nipa.png?v=20261027', h: 'clamp(40px,5vw,56px)', url: 'https://www.nipa.kr/', desc: { ko: '정보통신산업진흥원(NIPA)은 AI와 ICT 산업 육성으로 국가·경제의 혁신성장을 이끄는 기관입니다. AI와 ICT의 융합(AICT)을 선도하는 디지털 혁신 전문기관을 비전으로 삼고 있습니다.', en: 'The National IT Industry Promotion Agency (NIPA) drives national and economic innovation-led growth by fostering the AI and ICT industries. Its vision is to be the digital innovation agency leading the convergence of AI and ICT (AICT).' } }
+  ] },
+  { name: 'T-shirt Sponsor', gap: '32px 56px', mt: '36px', items: [
+    { id: 'shinzu', name: 'Shinzu', logo: 'logo/sponsor/shinzu.png?v=20261027', h: 'clamp(30px,3.8vw,42px)', url: 'https://shinzu.co.kr/', desc: { ko: 'SHINZU(신즈)는 "매일을 위한 옷"을 만드는 의류 브랜드입니다. 불필요한 장식 없이 일상에서 가장 자주 입는 옷을 다시 설계합니다. 빠르게 소비되는 옷이 아니라 오랫동안 곁에 남는 옷을 만들고자 합니다.', en: 'SHINZU is a Korean apparel brand making clothes for every day. It redesigns the clothes people wear most often, without unnecessary decoration. Rather than clothes that are quickly consumed, it aims to make clothes that stay with you for years.' } }
+  ] }
+];
+
+// 출판사 — 로고는 logo/publisher/에. books: [{ title, author, url, cover }] (url·cover는 선택)
+const PUBLISHERS = [
+];
+
 class Component extends DCLogic {
   canvasRef = React.createRef();
-  state = { activeSection: 'top', lang: 'ko', isNarrow: false, menuOpen: false };
+  state = { activeSection: 'top', lang: 'ko', isNarrow: false, menuOpen: false, detail: null };
 
   componentDidMount() {
     const onResize = () => {
@@ -534,6 +585,17 @@ class Component extends DCLogic {
     onResize();
     window.addEventListener('resize', onResize);
     this._onResizeNav = onResize;
+
+    const onHash = () => {
+      const m = /^#(sponsor|publisher)\/(.+)$/.exec(window.location.hash);
+      if (m && this._findDetail(m[1], decodeURIComponent(m[2]))) this.openDetail(m[1], decodeURIComponent(m[2]));
+    };
+    onHash();
+    window.addEventListener('hashchange', onHash);
+    this._onHash = onHash;
+    const onKey = (e) => { if (e.key === 'Escape' && this.state.detail) this.closeDetail(); };
+    window.addEventListener('keydown', onKey);
+    this._onKey = onKey;
 
     const canvas = this.canvasRef.current;
     if (!canvas) return;
@@ -675,12 +737,34 @@ class Component extends DCLogic {
       window.removeEventListener('resize', this._updateActive);
     }
     if (this._onResizeNav) window.removeEventListener('resize', this._onResizeNav);
+    if (this._onHash) window.removeEventListener('hashchange', this._onHash);
+    if (this._onKey) window.removeEventListener('keydown', this._onKey);
+    document.body.style.overflow = '';
   }
 
   toggleMenu = () => { this.setState(s => ({ menuOpen: !s.menuOpen })); };
   closeMenu = () => { this.setState({ menuOpen: false }); };
 
   setLang = (lang) => { this.setState({ lang }); };
+
+  _findDetail(kind, id) {
+    if (kind === 'publisher') { const pb = PUBLISHERS.find(p => p.id === id); return pb ? { ...pb } : null; }
+    for (const tier of SPONSOR_TIERS) {
+      const sp = tier.items.find(x => x.id === id);
+      if (sp) return { ...sp, tier: tier.name };
+    }
+    return null;
+  }
+  openDetail = (kind, id) => {
+    this.setState({ detail: { kind, id } });
+    document.body.style.overflow = 'hidden';
+    history.replaceState(null, '', '#' + kind + '/' + encodeURIComponent(id));
+  };
+  closeDetail = () => {
+    this.setState({ detail: null });
+    document.body.style.overflow = '';
+    history.replaceState(null, '', '#sponsors');
+  };
 
   renderVals() {
     const accent = this.props.accent ?? '#EE4C2C';
@@ -693,6 +777,8 @@ class Component extends DCLogic {
     const _days = Math.round((new Date(2026, 10, 21) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
     const dday = _days === 0 ? 'D-DAY' : 'D-' + _days;
     const eventShort = lang === 'en' ? 'Nov 21' : '11.21 (토)';
+    const detail = this.state.detail && this._findDetail(this.state.detail.kind, this.state.detail.id);
+    if (detail) detail.kind = this.state.detail.kind;
     return {
       accent, rad, t, lang, dday, eventShort, regOpen,
       cfpOpen: !cfpClosed, cfpClosed,
@@ -706,23 +792,39 @@ class Component extends DCLogic {
       sessionsGap: this.state.isNarrow ? '36px' : '40px',
       sessionTracks: [
         { num: '01', name: 'Build Track', color: 'var(--c1)', sessions: [
-          { title: '오픈소스 Physical AI 모델은 더 빠르게 훈련할 수 있다', speakers: lang === 'en' ? 'Joochul Chang' : '장주철' },
-          { title: '환자 수술 동영상을 안전하게 분석하기: VLM 파인튜닝과 암호화 추론', speakers: '이가람' },
-          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', speakers: '양원석' }
+          { title: '오픈소스 Physical AI 모델은 더 빠르게 훈련할 수 있다', speakers: '장주철', speakersEn: 'Joochul Chang' },
+          { title: '환자 수술 동영상을 안전하게 분석하기: VLM 파인튜닝과 암호화 추론', titleEn: 'Privacy-Preserving Surgical Video Analysis: VLM Fine-Tuning and Encrypted Inference', speakers: '이가람', speakersEn: 'Garam Lee' },
+          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', titleEn: 'Memory Bottlenecks and Optimizations in Model Training: From Cross-Entropy to MoE Kernels', speakers: '양원석', speakersEn: 'Wonsuk Yang' }
         ] },
         { num: '02', name: 'Serve Track', color: 'var(--c2)', sessions: [
           { title: '작은 모델을 더 작고 빠르게: Unsloth LoRA·TorchAO INT4 QAT부터 vLLM 서빙까지', speakers: 'hyeonsangjeon' },
           { title: 'Ray 기반 엣지 환경에서의 고성능 LLM 서빙 제공하기: KV-Aware 라우팅 딜레마 해결과 오픈소스 기여', speakers: '나동준' },
           { title: 'PyTorch로 만드는 로컬 추론 엔진', speakers: '석주영' },
-          { title: 'Jetson Thor 한 장에서 VLA 로봇 정책 서빙하기(feat. NVIDIA GR00T)', speakers: '양유석' },
-          { title: 'LLM 운영부터 거버넌스까지: 서빙 프레임워크 · 효율화 스택 · 거버넌스', speakers: '백원기' }
+          { title: 'Jetson Thor 한 장에서 VLA 로봇 정책 서빙하기(feat. NVIDIA GR00T)', titleEn: 'Serving VLA Robot Policies on a Single Jetson Thor (feat. NVIDIA GR00T)', speakers: '양유석', speakersEn: 'Yu-seok Yang' },
+          { title: 'LLM 운영부터 거버넌스까지: 서빙 프레임워크 · 효율화 스택 · 거버넌스', titleEn: 'LLMOps: From Serving to Operations', speakers: '백원기', speakersEn: 'Wongi Baek' }
         ] },
         { num: '03', name: 'Run Track', color: 'var(--c4)', sessions: [
-          { title: '앵무새가 말을 따라 했는지 어떻게 알 수 있을까? 앵무새 말 가르치기 앱 BuddyBird', speakers: '김다은, 이강혁, 정희진' },
+          { title: '앵무새가 말을 따라 했는지 어떻게 알 수 있을까? 앵무새 말 가르치기 앱 BuddyBird', titleEn: 'Detecting Speech Mimicry in Parrots: The Story Behind the BuddyBird App', speakers: '김다은, 이강혁, 정희진', speakersEn: 'Da-Eun Kim, Kang-Hyeok Lee, Hee-Jin Jung' },
           { title: 'The Search It Never Made: When a 1.2B On-Device Model Should Call Web Search', speakers: 'Alpha Romer Coma, Xynil Jhed Lacap' },
-          { title: '스마트폰 한 대로 만드는 Physical AI 데이터 수집 파이프라인', speakers: '조윤민' }
+          { title: '스마트폰 한 대로 만드는 Physical AI 데이터 수집 파이프라인', titleEn: 'Smartphone-Based Physical AI Data Collection Pipeline: A Metric-Scale Real2Sim for Natural Hand-Object Interaction', speakers: '조윤민', speakersEn: 'Yunmin Cho' }
         ] }
-      ],
+      ].map(tr => ({ ...tr, sessions: tr.sessions.map(x => lang === 'en' ? { title: x.titleEn || x.title, speakers: x.speakersEn || x.speakers } : x) })),
+      sponsorTiers: SPONSOR_TIERS.map((tier, i) => ({ ...tier, top: i === 0 ? '48px' : '64px', items: tier.items.map(sp => ({ ...sp, name: lang === 'en' && sp.nameEn ? sp.nameEn : sp.name, open: () => this.openDetail('sponsor', sp.id) })) })),
+      hasPublishers: PUBLISHERS.length > 0,
+      publishers: PUBLISHERS.map(pb => ({ ...pb, name: lang === 'en' && pb.nameEn ? pb.nameEn : pb.name, open: () => this.openDetail('publisher', pb.id) })),
+      detailOpen: !!detail,
+      detail: detail ? {
+        label: detail.kind === 'publisher' ? t.detail.publisher : detail.tier,
+        name: lang === 'en' && detail.nameEn ? detail.nameEn : detail.name,
+        logo: detail.logo,
+        url: detail.url || '',
+        desc: (detail.desc && (lang === 'en' && detail.desc.en ? detail.desc.en : detail.desc.ko)) || '',
+        hasDesc: !!(detail.desc && (detail.desc.ko || detail.desc.en)),
+        books: (detail.books || []).map(b => ({ ...b, href: b.url || detail.url || undefined, cover: b.cover || '' })),
+        hasBooks: !!(detail.books && detail.books.length)
+      } : {},
+      closeDetail: this.closeDetail,
+      stopClick: (e) => e.stopPropagation(),
       artDiv: this.state.isNarrow ? 'border-bottom:1px solid var(--line)' : 'border-right:1px solid var(--line)',
       menuOpen: this.state.menuOpen,
       toggleMenu: this.toggleMenu,
