@@ -230,7 +230,7 @@
         <div style="margin-top:{{ tutorialsTop }};display:flex;align-items:center;gap:24px"><span style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)">{{ t.topics.tutorialsLabel }}</span></div>
         <div style="margin-top:28px;display:grid;grid-template-columns:{{ tutorialCols }};gap:20px">
           <sc-for list="{{ tutorials }}" as="tu">
-            <div style="display:flex;flex-direction:column;padding:26px 28px;background:linear-gradient(155deg, color-mix(in srgb, var(--c3) 10%, var(--panel2)), var(--panel2));border-radius:16px">
+            <div style="display:flex;flex-direction:column;padding:26px 28px;background:linear-gradient(155deg, color-mix(in srgb, var(--c3) 4%, var(--panel2)), var(--panel2));border-radius:16px">
               <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px"><span style="font-size:15px;font-weight:700;color:var(--c3)">{{ tu.org }}</span><span style="color:var(--ink3);font-size:14px">|</span><span style="font-size:14.5px;font-weight:600;color:var(--ink2)">{{ tu.speakers }}</span></div>
               <p style="font-size:17px;font-weight:700;line-height:1.5;letter-spacing:-.01em;color:var(--ink);margin-top:12px">{{ tu.title }}</p>
               <p style="font-size:14.5px;line-height:1.7;color:var(--ink2);margin-top:10px">{{ tu.summary }}</p>
