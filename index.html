@@ -331,7 +331,7 @@
     </div>
   </section>
 
-  <!-- SPONSORS — 등급 순서: Platinum → Gold → Silver → Startup → Community → Event Partner → T-shirt, 같은 등급 안에서는 입금 순서. Startup까지는 아래로 갈수록 로고 크기를 줄이고, Community부터는 같은 크기 -->
+  <!-- SPONSORS — 등급 순서: Platinum → Gold → Silver → Startup → Community → Event Partner → T-shirt → Media Partner, 같은 등급 안에서는 입금 순서. Startup까지는 아래로 갈수록 로고 크기를 줄이고, Community부터는 같은 크기 -->
   <section id="sponsors" style="padding:clamp(72px,9vw,112px) 0;background:var(--panel)">
     <div style="max-width:1240px;margin:0 auto;padding:0 32px">
       <div style="display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3)">Sponsors</div>
@@ -574,7 +574,7 @@ const TUTORIALS = [
     speakers: '이승원', speakersEn: 'Seungwon Lee', url: '' }
 ];
 
-// 후원사 — 등급 순서: Platinum → Gold → Silver → Startup → Community → Event Partner → T-shirt, 같은 등급 안에서는 입금 순서.
+// 후원사 — 등급 순서: Platinum → Gold → Silver → Startup → Community → Event Partner → T-shirt → Media Partner, 같은 등급 안에서는 입금 순서.
 // Startup까지는 아래로 갈수록 로고 크기를 줄이고, Community부터는 같은 크기 (clamp(30px,3.8vw,42px), gap 32px 56px).
 // desc는 { ko, en } — 비어 있으면 팝업에서 소개 문단을 숨기고, en이 비어 있으면 ko를 보여줌. url이 비어 있으면 바로가기 버튼을 숨김.
 // cls: 'pdk-2x2'면 넓은 화면에서는 한 줄, 좁은 화면(820px 이하)에서는 한 줄에 2개씩
@@ -597,7 +597,10 @@ const SPONSOR_TIERS = [
     { id: 'nipa', name: 'nipa 정보통신산업진흥원', nameEn: 'nipa', logo: 'logo/sponsor/nipa.png?v=20261027', h: 'clamp(40px,5vw,56px)', url: 'https://www.nipa.kr/', desc: { ko: '정보통신산업진흥원(NIPA)은 AI와 ICT 산업 육성으로 국가·경제의 혁신성장을 이끄는 기관입니다. AI와 ICT의 융합(AICT)을 선도하는 디지털 혁신 전문기관을 비전으로 삼고 있습니다.', en: 'The National IT Industry Promotion Agency (NIPA) drives national and economic innovation-led growth by fostering the AI and ICT industries. Its vision is to be the digital innovation agency leading the convergence of AI and ICT (AICT).' } }
   ] },
   { name: 'T-shirt Sponsor', gap: '32px 56px', mt: '36px', items: [
-    { id: 'shinzu', name: 'Shinzu', logo: 'logo/sponsor/shinzu.png?v=20261027', h: 'clamp(30px,3.8vw,42px)', url: 'https://shinzu.co.kr/', desc: { ko: 'Shinzu(신즈)는 "매일을 위한 옷"을 만드는 의류 브랜드입니다. 불필요한 장식 없이 일상에서 가장 자주 입는 옷을 다시 설계합니다. 빠르게 소비되는 옷이 아니라 오랫동안 곁에 남는 옷을 만들고자 합니다.', en: 'Shinzu is a Korean apparel brand making clothes for every day. It redesigns the clothes people wear most often, without unnecessary decoration. Rather than clothes that are quickly consumed, it aims to make clothes that stay with you for years.' } }
+    { id: 'shinzu', name: 'Shinzu', logo: 'logo/sponsor/shinzu.png?v=20261027', h: 'clamp(30px,3.8vw,42px)', url: 'https://shinzu.co.kr/', desc: { ko: 'Shinzu는 오늘의 방식으로 일하는 사람들을 위한 모던 워크웨어 브랜드입니다. 변화한 일의 환경에 맞춰 기능성과 디자인을 새롭게 정의합니다.', en: 'Shinzu is a modern workwear brand for people who work the way people work today. It redefines function and design for a changed working environment.' } }
+  ] },
+  { name: 'Media Partner', gap: '32px 56px', mt: '36px', items: [
+    { id: 'endplan', name: 'Endplan', logo: 'logo/sponsor/endplan.png?v=20261112', h: 'clamp(36px,4.6vw,50px)', url: 'https://endplan.ai/', desc: { ko: '엔드플랜(Endplan)은 콘텐츠를 직접 만들고, 사람과 콘텐츠의 상호작용을 연구해 AI 기술을 개발하는 콘텐츠 테크 기업입니다. 개발한 기술은 파트너와 함께 현장에 적용하고 공동사업으로 발전시킵니다. 파이토치 코리아에서 연구자와 개발자가 나누는 지식과 경험이 글과 영상을 통해 더 많은 사람에게 닿도록 미디어 스폰서로 함께합니다.', en: 'Endplan is a content tech company that creates its own content and develops AI technology by studying how people interact with content. It applies the technology it builds in the field together with partners and grows it into joint ventures. Endplan joins PyTorch Korea as a media sponsor so that the knowledge and experience researchers and developers share here can reach more people through articles and videos.' } }
   ] }
 ];
 
@@ -661,6 +664,17 @@ const PUBLISHERS = [
       { title: '데이터 분석을 위한 전처리와 시각화 with 파이썬', url: 'https://www.gilbut.co.kr/book/view?bookcode=BN003724' },
       { title: 'SW코딩역량평가 TOSC 실전 기출문제 파이썬 편 3·4·5급', url: 'https://www.gilbut.co.kr/book/view?bookcode=BN004684' },
       { title: 'SW코딩역량평가 TOSC 실전 기출문제 C 언어 편 1·2급', url: 'https://www.gilbut.co.kr/book/view?bookcode=BN004690' }
+    ] },
+  { id: 'youngjin', name: '영진닷컴', nameEn: 'YoungJin.com', logo: 'logo/publisher/youngjin.png?v=20261112', url: 'https://shop.youngjin.com/',
+    desc: { ko: '독자에게 도움이 되는 책을 만듭니다. 영진닷컴은 IT 전문서, 취미·실용서, ‘이기적’ 시리즈 수험서를 출간하는 대한민국 대표 종합 출판사입니다. 다양한 SNS 채널을 통해 유익한 콘텐츠와 학습 자료, 서비스를 제공하며 독자들과 소통하고 있습니다.',
+      en: 'We make books that help readers. YoungJin.com is one of Korea’s leading general publishers, publishing IT books, hobby and lifestyle titles, and the ‘Igijeok’ series of certification exam guides. Through a variety of social media channels, it provides useful content, learning materials, and services, and stays in conversation with its readers.' },
+    books: [
+      { title: '랭체인으로 구현하는 AI 서비스 & 에이전트 개발 입문', url: 'https://shop.youngjin.com/goods/view?no=1304' },
+      { title: '처음이야? 파이썬 데이터 모델링&머신러닝', url: 'https://shop.youngjin.com/goods/view?no=1343' },
+      { title: '개발자를 위한 AI 알고리즘', url: 'https://shop.youngjin.com/goods/view?no=1248' },
+      { title: '파이썬으로 배우는 데이터 과학', url: 'https://shop.youngjin.com/goods/view?no=1250' },
+      { title: '딥러닝을 위한 파이토치 입문', url: 'https://shop.youngjin.com/goods/view?no=132' },
+      { title: '코딩은 처음이라 with 딥러닝', url: 'https://shop.youngjin.com/goods/view?no=512' }
     ] }
 ];
 
@@ -894,14 +908,17 @@ class Component extends DCLogic {
         { num: '01', name: 'Build Track', color: 'var(--c1)', sessions: [
           { title: '오픈소스 Physical AI 모델은 더 빠르게 훈련할 수 있다', titleEn: 'Accelerating the Training of Open-Source Physical AI Models', speakers: '장주철', speakersEn: 'Joochul Chang' },
           { title: '환자 수술 동영상을 안전하게 분석하기: VLM 파인튜닝과 암호화 추론', titleEn: 'Privacy-Preserving Surgical Video Analysis: VLM Fine-Tuning and Encrypted Inference', speakers: '이가람', speakersEn: 'Garam Lee' },
-          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', titleEn: 'Memory Bottlenecks and Optimizations in Model Training: From Cross-Entropy to MoE Kernels', speakers: '양원석', speakersEn: 'Wonsuk Yang' }
+          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', titleEn: 'Memory Bottlenecks and Optimizations in Model Training: From Cross-Entropy to MoE Kernels', speakers: '양원석', speakersEn: 'Wonsuk Yang' },
+          { title: "From .to('cuda') to .to('neuron')", speakers: '윤석찬', speakersEn: 'Channy Yun' }
         ] },
         { num: '02', name: 'Serve Track', color: 'var(--c2)', sessions: [
           { title: '작은 모델을 더 작고 빠르게: Unsloth LoRA·TorchAO INT4 QAT부터 vLLM 서빙까지', titleEn: 'Making Small Models Smaller and Faster: From Unsloth LoRA and TorchAO INT4 QAT to vLLM Serving', speakers: '전현상', speakersEn: 'Hyeonsang Jeon' },
           { title: 'Ray 기반 엣지 환경에서의 고성능 LLM 서빙 제공하기: KV-Aware 라우팅 딜레마 해결과 오픈소스 기여', titleEn: 'High-Performance LLM Serving at the Edge with Ray: Solving the KV-Aware Routing Dilemma and Contributing to Open Source', speakers: '나동준', speakersEn: 'Dongjun Na' },
           { title: 'PyTorch로 만드는 로컬 추론 엔진', titleEn: 'Building a Local Inference Engine from Scratch with PyTorch', speakers: '석주영', speakersEn: 'Juyoung Suk' },
           { title: 'Jetson Thor 한 장에서 VLA 로봇 정책 서빙하기(feat. NVIDIA GR00T)', titleEn: 'Serving VLA Robot Policies on a Single Jetson Thor (feat. NVIDIA GR00T)', speakers: '양유석', speakersEn: 'Yu-seok Yang' },
-          { title: 'LLM 운영부터 거버넌스까지: 서빙 프레임워크 · 효율화 스택 · 거버넌스', titleEn: 'LLMOps: From Serving to Operations', speakers: '백원기', speakersEn: 'Wongi Baek' }
+          { title: 'LLM 운영부터 거버넌스까지: 서빙 프레임워크 · 효율화 스택 · 거버넌스', titleEn: 'LLMOps: From Serving to Operations', speakers: '백원기', speakersEn: 'Wongi Baek' },
+          { title: 'From PyTorch to endpoint: train, serve, scale to zero', speakers: 'Kenny Lee' },
+          { title: 'PyTorch 모델을 ExecuTorch 백엔드별로 최적화하고 양자화하기', titleEn: 'Optimizing and Quantizing PyTorch Models for Each ExecuTorch Backend', speakers: '최신국', speakersEn: 'Shinguk Choi' }
         ] },
         { num: '03', name: 'Run Track', color: 'var(--c4)', sessions: [
           { title: '앵무새가 말을 따라 했는지 어떻게 알 수 있을까? 앵무새 말 가르치기 앱 BuddyBird', titleEn: 'Detecting Speech Mimicry in Parrots: The Story Behind the BuddyBird App', speakers: '김다은, 이강혁, 정희진', speakersEn: 'Da-Eun Kim, Kang-Hyeok Lee, Hee-Jin Jung' },
