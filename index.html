@@ -117,6 +117,7 @@
           <nav style="display:flex;align-items:center;gap:24px;justify-content:flex-end;white-space:nowrap">
             <a href="#about" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">About</a>
             <a href="#topics" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Programs</a>
+            <a href="#tutorials" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Tutorials</a>
             <a href="#sessions" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Sessions</a>
             <a href="#timetable" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Timetable</a>
             <a href="#venue" style="font-size:14.5px;font-weight:500;color:var(--ink2)" style-hover="color:var(--ink)">Venue</a>
@@ -142,6 +143,7 @@
       <nav style="display:flex;flex-direction:column;max-width:1240px;margin:0 auto;padding:6px 32px 20px;border-top:1px solid var(--line)">
         <a onClick="{{ closeMenu }}" href="#about" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">About</a>
         <a onClick="{{ closeMenu }}" href="#topics" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Programs</a>
+        <a onClick="{{ closeMenu }}" href="#tutorials" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Tutorials</a>
         <a onClick="{{ closeMenu }}" href="#sessions" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Sessions</a>
         <a onClick="{{ closeMenu }}" href="#timetable" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Timetable</a>
         <a onClick="{{ closeMenu }}" href="#venue" style="padding:14px 4px;font-size:16px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)">Venue</a>
@@ -161,6 +163,7 @@
         </div>
         <div style="display:flex;gap:9px">
           <a href="https://event-us.kr/pytorchkr/event/136733" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.register }} 🔗</a>
+          <a href="https://tutorial.pytorchday.kr" target="_blank" rel="noopener" class="pdk-barbtn" style="font-weight:800;font-size:13px;color:var(--ink);background:transparent;border:1.5px solid rgba(251,247,255,.28);padding:6.5px 15px;border-radius:999px;box-shadow:0 0 11px rgba(251,247,255,.2);transition:background .18s ease,border-color .18s ease,box-shadow .18s ease" style-hover="background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.4)">{{ t.bar.tutorial }} 🔗</a>
         </div>
       </div>
     </div>
@@ -238,7 +241,7 @@
 
       <!-- Tutorials: 소속 | 발표자, 제목, 한 줄 요약. url(Pretalx)이 있으면 자세히 보기 링크를 보여줌 -->
       <sc-if value="{{ hasTutorials }}" hint-placeholder-val="{{ true }}">
-        <div style="margin-top:{{ tutorialsTop }};display:flex;align-items:center;gap:24px"><span style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)">{{ t.topics.tutorialsLabel }}</span></div>
+        <div id="tutorials" style="scroll-margin-top:140px;margin-top:{{ tutorialsTop }};display:flex;align-items:center;flex-wrap:wrap;gap:16px 24px"><span style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)">{{ t.topics.tutorialsLabel }}</span><a href="https://tutorial.pytorchday.kr" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;color:#fff;background:var(--ac,#EE4C2C);padding:10px 20px;border-radius:999px;box-shadow:0 10px 26px -12px var(--ac,#EE4C2C);transition:filter .15s ease,transform .15s ease" style-hover="filter:brightness(1.08);transform:translateY(-1px)">{{ t.topics.tutorialApply }} →</a></div>
         <div style="margin-top:28px;display:grid;grid-template-columns:{{ tutorialCols }};column-gap:{{ sessionsGap }}">
           <sc-for list="{{ tutorials }}" as="tu">
             <div style="display:flex;flex-direction:column;padding:8px 0 10px;border-top:1px solid var(--line)">
@@ -453,6 +456,7 @@
           <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">{{ t.footer.quickLinks }}</div>
           <a href="#about" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">About</a>
           <a href="#topics" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Programs</a>
+          <a href="#tutorials" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Tutorials</a>
           <a href="#sessions" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sessions</a>
           <a href="#timetable" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Timetable</a>
           <a href="#venue" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Venue</a>
@@ -500,7 +504,7 @@ const TRANSLATIONS = {
       track2Desc: 'PyTorch 오픈소스 AI 프로젝트를 활용해 모델을 서빙한 경험과 지식을 공유합니다. GPU 및 NPU 활용, vLLM, DeepSpeed, Ray, Safetensors 적용 등의 내용을 다룹니다.',
       track3Desc: '여러 AI Application을 만들고 제공한 경험을 공유하는 트랙입니다. 생성형 AI 응용 사례, AI Agent, edge 운영 경험 등을 다룹니다.',
       timetableLabel: 'Timetable', comingSoon: 'coming soon', timetableMore: '시간표 전체 보기', timetableLess: '시간표 접기',
-      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', sessionsLabel: 'Sessions', more: '자세히 보기'
+      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: '튜토리얼 참가 신청하기', sessionsLabel: 'Sessions', more: '자세히 보기'
     },
     venue: {
       dateValue: '2026년 11월 21일 (토)',
@@ -512,7 +516,7 @@ const TRANSLATIONS = {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
     detail: { homepage: '홈페이지 바로가기', books: '후원 도서', close: '닫기', publisher: 'Book Sponsor' },
-    bar: { status: '참가 신청 접수 중', register: '참가 신청하기' }
+    bar: { status: '참가 신청 접수 중', register: '참가 신청하기', tutorial: '튜토리얼 신청' }
   },
   en: {
     about: {
@@ -528,7 +532,7 @@ const TRANSLATIONS = {
       track2Desc: 'Sharing experience serving models with the PyTorch open-source AI ecosystem. Covers GPU and NPU usage, vLLM, DeepSpeed, Ray, and Safetensors adoption.',
       track3Desc: 'A track for sharing experience building and running AI applications. Covers generative AI use cases, AI agents, and edge deployment experience.',
       timetableLabel: 'Timetable', comingSoon: 'coming soon', timetableMore: 'Show full timetable', timetableLess: 'Show less',
-      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', sessionsLabel: 'Sessions', more: 'Details'
+      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: 'Apply for Tutorials', sessionsLabel: 'Sessions', more: 'Details'
     },
     venue: {
       dateValue: 'Saturday, Nov 21, 2026',
@@ -540,7 +544,7 @@ const TRANSLATIONS = {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
     detail: { homepage: 'Visit Website', books: 'Sponsored Books', close: 'Close', publisher: 'Book Sponsor' },
-    bar: { status: 'Registration Open', register: 'Register Now' }
+    bar: { status: 'Registration Open', register: 'Register Now', tutorial: 'Tutorial Sign-up' }
   }
 };
 
