@@ -689,7 +689,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     const onResize = () => {
-      const narrow = window.innerWidth < 1140;
+      const narrow = window.innerWidth < 1260;
       this.setState(s => {
         if (s.isNarrow === narrow) return null;
         return narrow ? { isNarrow: true } : { isNarrow: false, menuOpen: false };
