@@ -554,7 +554,8 @@ const KEYNOTES = [
   { name: 'Driss Guessous', org: 'Meta PyTorch', logo: 'speakers/meta-logo.png', logoH: '22px', photo: 'speakers/driss-guessous.jpg' },
   { name: 'Sherlock Baihan Huang', org: 'Meta PyTorch', logo: 'speakers/meta-logo.png', logoH: '22px', photo: 'speakers/sherlock-huang.jpg' },
   { name: 'Jun Kim', org: 'Hugging Face', logo: 'speakers/huggingface-logo.png', logoH: '30px', photo: 'speakers/jun-kim.jpg' },
-  { name: '김찬란', nameEn: 'Chanran Kim', org: 'NVIDIA', logo: 'speakers/nvidia-logo.png', logoH: '22px', photo: 'speakers/kim-chanran.jpg' }
+  { name: '김찬란', nameEn: 'Chanran Kim', org: 'NVIDIA', logo: 'speakers/nvidia-logo.png', logoH: '22px', photo: 'speakers/kim-chanran.jpg' },
+  { name: '윤석찬', nameEn: 'Channy Yun', org: 'AWS', logo: 'speakers/aws-logo.png', logoH: '34px', photo: 'speakers/channy-yun.jpg' }
 ];
 
 // Tutorials — 접수 순서. summary는 카드에 보여줄 한 줄 요약, url은 Pretalx 링크(비어 있으면 링크 숨김)
@@ -900,7 +901,7 @@ class Component extends DCLogic {
       topicsCols: this.state.isNarrow ? '1fr' : 'repeat(3,1fr)',
       sessionsGap: this.state.isNarrow ? '36px' : '40px',
       hasKeynotes: KEYNOTES.length > 0,
-      keynoteCols: this.state.isNarrow ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))',
+      keynoteCols: this.state.isNarrow ? 'repeat(2,minmax(0,1fr))' : 'repeat(5,minmax(0,1fr))',
       keynotes: KEYNOTES.map(x => ({ ...x, name: lang === 'en' && x.nameEn ? x.nameEn : x.name, role: lang === 'en' && x.roleEn ? x.roleEn : x.role, org: lang === 'en' && x.orgEn ? x.orgEn : x.org, title: lang === 'en' && x.titleEn ? x.titleEn : x.title, hasRole: !!x.role, logoH: x.logoH || '24px', hasTitle: !!x.title, hasLogo: !!x.logo, noLogo: !x.logo })),
       hasTutorials: TUTORIALS.length > 0,
       tutorialsTop: KEYNOTES.length ? '56px' : '44px',
@@ -912,8 +913,7 @@ class Component extends DCLogic {
         { num: '01', name: 'Build Track', color: 'var(--c1)', sessions: [
           { title: '오픈소스 Physical AI 모델은 더 빠르게 훈련할 수 있다', titleEn: 'Accelerating the Training of Open-Source Physical AI Models', speakers: '장주철', speakersEn: 'Joochul Chang' },
           { title: '환자 수술 동영상을 안전하게 분석하기: VLM 파인튜닝과 암호화 추론', titleEn: 'Privacy-Preserving Surgical Video Analysis: VLM Fine-Tuning and Encrypted Inference', speakers: '이가람', speakersEn: 'Garam Lee' },
-          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', titleEn: 'Memory Bottlenecks and Optimizations in Model Training: From Cross-Entropy to MoE Kernels', speakers: '양원석', speakersEn: 'Wonsuk Yang' },
-          { title: "From .to('cuda') to .to('neuron')", speakers: '윤석찬', speakersEn: 'Channy Yun' }
+          { title: '모델을 학습하며 마주한 메모리 병목과 최적화: Cross-Entropy부터 MoE 커널까지', titleEn: 'Memory Bottlenecks and Optimizations in Model Training: From Cross-Entropy to MoE Kernels', speakers: '양원석', speakersEn: 'Wonsuk Yang' }
         ] },
         { num: '02', name: 'Serve Track', color: 'var(--c2)', sessions: [
           { title: '작은 모델을 더 작고 빠르게: Unsloth LoRA·TorchAO INT4 QAT부터 vLLM 서빙까지', titleEn: 'Making Small Models Smaller and Faster: From Unsloth LoRA and TorchAO INT4 QAT to vLLM Serving', speakers: '전현상', speakersEn: 'Hyeonsang Jeon' },
