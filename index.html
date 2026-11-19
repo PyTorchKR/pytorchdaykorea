@@ -55,7 +55,9 @@
   a{color:inherit;text-decoration:none}
   @keyframes pdk-mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @keyframes pdk-mq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-  @keyframes pdk-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+  @keyframes pdk-gift{0%,100%{transform:translateY(0) rotate(0)}15%{transform:translateY(-6px) rotate(-12deg)}30%{transform:translateY(0) rotate(10deg)}45%{transform:translateY(-3px) rotate(-6deg)}60%{transform:translateY(0) rotate(0)}}
+  .pdk-gift{flex:0 0 auto;display:inline-block;font-size:30px;line-height:1;animation:pdk-gift 1.6s ease-in-out infinite;transform-origin:50% 80%}
+  @media (prefers-reduced-motion:reduce){.pdk-gift{animation:none}}
   @keyframes pdk-sweep{0%{left:-40%}70%,100%{left:125%}}
   @media (max-width:640px){ .pdk-reg-hide{display:none!important} }
   .pdk-2x2{flex-wrap:nowrap!important;column-gap:clamp(24px,3.5vw,48px)!important} .pdk-2x2>*{min-width:0;max-width:100%} .pdk-2x2 img{object-fit:contain}
@@ -157,7 +159,7 @@
       <div style="position:absolute;top:0;bottom:0;width:26%;left:-40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-18deg);animation:pdk-sweep 6s ease-in-out infinite;pointer-events:none"></div>
       <div style="position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px">
         <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-size:15px;color:#fff">
-          <span class="pdk-reg-hide" style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#fff;display:inline-flex;align-items:center"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#fff;margin-right:9px;box-shadow:0 0 8px rgba(255,255,255,.8);animation:pdk-dot 1.8s ease-in-out infinite"></span>{{ t.bar.status }}</span>
+          <span class="pdk-reg-hide" style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#fff;display:inline-flex;align-items:center">{{ t.bar.status }}</span>
           <span class="pdk-reg-hide" style="opacity:.45">|</span>
           <span><b style="color:#fff">{{ eventShort }}</b> <span style="color:#fff;font-family:'JetBrains Mono',monospace;font-weight:700">{{ dday }}</span></span>
         </div>
@@ -310,6 +312,21 @@
       <div style="display:flex;justify-content:center;margin-top:20px">
         <button onClick="{{ toggleTimetable }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'Pretendard',sans-serif;font-weight:600;font-size:14.5px;color:var(--ink2);background:transparent;border:1px solid var(--line);padding:10px 18px 10px 22px;border-radius:999px;cursor:pointer;transition:color .2s ease,border-color .2s ease,background .2s ease" style-hover="color:var(--ink)!important;border-color:rgba(251,247,255,.6)!important;background:rgba(251,247,255,.12)!important">{{ timetableBtn }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate({{ timetableChevron }});transition:transform .2s ease"><path d="M6 9l6 6 6-6"/></svg></button>
       </div>
+
+      <!-- On-site Events: 홈페이지에는 간단히, 누르면 팝업으로 자세한 설명. 데이터는 아래 스크립트의 EVENTS에서 관리 -->
+      <div id="events" style="scroll-margin-top:140px;margin-top:72px;display:flex;align-items:center;gap:24px"><span style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-.01em;color:var(--ink)">{{ t.topics.eventsLabel }}</span></div>
+      <div style="margin-top:28px;display:grid;grid-template-columns:{{ tutorialCols }};column-gap:{{ sessionsGap }}">
+        <sc-for list="{{ events }}" as="ev">
+          <div style="display:flex;flex-direction:column;padding:8px 0 10px;border-top:1px solid var(--line)">
+            <button onClick="{{ ev.open }}" style="flex:1;display:flex;flex-direction:column;text-align:left;font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:14px;margin:0 -14px;border-radius:12px;transition:background .2s ease" style-hover="background:color-mix(in srgb, var(--c2) 7%, transparent)">
+              <span style="font-size:17px;font-weight:700;line-height:1.5;letter-spacing:-.01em;color:var(--c2)">{{ ev.label }}</span>
+              <span style="font-size:14.5px;line-height:1.7;color:var(--ink2);margin-top:8px">{{ ev.summary }}</span>
+              <span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:13.5px;color:var(--ink2);margin-top:12px"><span>🕒 {{ ev.timeShort }}</span><span>📍 {{ ev.place }}</span></span>
+              <span style="font-size:13.5px;font-weight:600;color:var(--ink);margin-top:14px">{{ t.topics.more }} →</span>
+            </button>
+          </div>
+        </sc-for>
+      </div>
     </div>
   </section>
 
@@ -411,13 +428,37 @@
     <div onClick="{{ closeDetail }}" style="position:fixed;inset:0;z-index:100;background:rgba(10,7,16,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px">
       <div onClick="{{ stopClick }}" role="dialog" aria-modal="true" aria-label="{{ detail.name }}" style="position:relative;width:100%;max-width:620px;max-height:calc(100vh - 32px);overflow-y:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--rad,24px);padding:clamp(28px,4vw,44px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8)">
         <button onClick="{{ closeDetail }}" aria-label="{{ t.detail.close }}" style="position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:none;border:1px solid var(--line);color:var(--ink2);font-size:20px;line-height:1;cursor:pointer" style-hover="color:var(--ink);border-color:var(--ink3)">&times;</button>
+        <sc-if value="{{ detail.hasLogo }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;align-items:center;justify-content:center;min-height:clamp(140px,22vw,200px);margin-top:28px;padding:28px;border:1px solid var(--line);border-radius:calc(var(--rad,24px) * .6);background:{{ detail.logoBg }}">
           <img src="{{ detail.logo }}" alt="{{ detail.name }}" style="max-height:clamp(56px,9vw,88px);width:auto" />
         </div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--c3);margin-top:24px">{{ detail.label }}</div>
+        </sc-if>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{{ detail.labelColor }};margin-top:{{ detail.labelTop }}">{{ detail.label }}</div>
         <h3 style="font-family:'Syne','Pretendard',sans-serif;font-weight:800;font-size:clamp(24px,3vw,30px);letter-spacing:-.01em;line-height:1.2;color:var(--ink);margin-top:8px">{{ detail.name }}</h3>
+        <sc-if value="{{ detail.isEvent }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ detail.hasKicker }}" hint-placeholder-val="{{ true }}"><p style="font-size:15px;font-weight:600;color:var(--ink2);margin-top:6px">{{ detail.kicker }}</p></sc-if>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin-top:20px;padding:16px 18px;border-radius:14px;background:var(--bg);font-size:14.5px;line-height:1.55">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding-top:2px">{{ t.detail.time }}</span><span style="color:var(--ink)">{{ detail.time }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding-top:2px">{{ t.detail.place }}</span><span style="color:var(--ink)">{{ detail.place }}</span>
+          </div>
+        </sc-if>
         <sc-if value="{{ detail.hasDesc }}" hint-placeholder-val="{{ true }}">
-          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:12px;white-space:pre-line">{{ detail.desc }}</p>
+          <p style="font-size:15px;line-height:1.75;color:var(--ink2);margin-top:{{ detail.descTop }};white-space:pre-line">{{ detail.desc }}</p>
+        </sc-if>
+        <sc-if value="{{ detail.isEvent }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-top:28px">{{ t.detail.how }}</div>
+          <ol style="list-style:none;margin:10px 0 0;padding:0">
+            <sc-for list="{{ detail.steps }}" as="st">
+              <li style="display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)">
+                <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;line-height:1.2;color:var(--c2)">{{ st.num }}</span>
+                <span><span style="display:block;font-size:15px;font-weight:700;line-height:1.5;color:var(--ink)">{{ st.title }}</span><span style="display:block;font-size:14px;line-height:1.6;color:var(--ink2);margin-top:2px">{{ st.text }}</span></span>
+              </li>
+            </sc-for>
+          </ol>
+          <div style="margin-top:20px;padding:16px 18px;border-radius:14px;background:color-mix(in srgb, var(--c2) 10%, transparent)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c2)">{{ t.detail.reward }}</div>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:8px"><span class="pdk-gift" aria-hidden="true">🎁</span><p style="font-size:15px;font-weight:600;line-height:1.6;color:var(--ink)">{{ detail.reward }}</p></div>
+          </div>
         </sc-if>
         <sc-if value="{{ detail.hasBooks }}" hint-placeholder-val="{{ false }}">
           <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-top:28px">{{ t.detail.books }}</div>
@@ -458,6 +499,7 @@
           <a href="#tutorials" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Tutorials</a>
           <a href="#sessions" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sessions</a>
           <a href="#timetable" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Timetable</a>
+          <a href="#events" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">On-site Events</a>
           <a href="#venue" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Venue</a>
           <a href="#sponsors" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Sponsors</a>
           <a href="#organizers" style="display:block;font-size:15px;color:var(--ink2);margin-bottom:13px;font-weight:600" style-hover="color:var(--ac,#EE4C2C)">Organizers</a>
@@ -503,7 +545,7 @@ const TRANSLATIONS = {
       track2Desc: 'PyTorch 오픈소스 AI 프로젝트를 활용해 모델을 서빙한 경험과 지식을 공유합니다. GPU 및 NPU 활용, vLLM, DeepSpeed, Ray, Safetensors 적용 등의 내용을 다룹니다.',
       track3Desc: '여러 AI Application을 만들고 제공한 경험을 공유하는 트랙입니다. 생성형 AI 응용 사례, AI Agent, edge 운영 경험 등을 다룹니다.',
       timetableLabel: 'Timetable', comingSoon: 'coming soon', timetableMore: '시간표 전체 보기', timetableLess: '시간표 접기',
-      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: '튜토리얼 참가 신청하기', sessionsLabel: 'Sessions', more: '자세히 보기'
+      eventsLabel: 'On-site Events', keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: '튜토리얼 참가 신청하기', sessionsLabel: 'Sessions', more: '자세히 보기'
     },
     venue: {
       dateValue: '2026년 11월 21일 (토)',
@@ -514,7 +556,7 @@ const TRANSLATIONS = {
     footer: {
       contact: '문의', speaker: '발표자 문의', sponsorLabel: '후원사 문의', general: '일반 문의', quickLinks: '바로가기'
     },
-    detail: { homepage: '홈페이지 바로가기', books: '후원 도서', close: '닫기', publisher: 'Book Sponsor' },
+    detail: { homepage: '홈페이지 바로가기', books: '후원 도서', close: '닫기', publisher: 'Book Sponsor', event: 'On-site Event', time: '시간', place: '장소', how: '참여 방법', reward: '혜택' },
     bar: { status: '참가자 모집 완료', tutorial: '튜토리얼 신청' }
   },
   en: {
@@ -531,7 +573,7 @@ const TRANSLATIONS = {
       track2Desc: 'Sharing experience serving models with the PyTorch open-source AI ecosystem. Covers GPU and NPU usage, vLLM, DeepSpeed, Ray, and Safetensors adoption.',
       track3Desc: 'A track for sharing experience building and running AI applications. Covers generative AI use cases, AI agents, and edge deployment experience.',
       timetableLabel: 'Timetable', comingSoon: 'coming soon', timetableMore: 'Show full timetable', timetableLess: 'Show less',
-      keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: 'Apply for Tutorials', sessionsLabel: 'Sessions', more: 'Details'
+      eventsLabel: 'On-site Events', keynoteLabel: 'Keynote', tutorialsLabel: 'Tutorials', tutorialApply: 'Apply for Tutorials', sessionsLabel: 'Sessions', more: 'Details'
     },
     venue: {
       dateValue: 'Saturday, Nov 21, 2026',
@@ -542,10 +584,44 @@ const TRANSLATIONS = {
     footer: {
       contact: 'Contact', speaker: 'Speaker Inquiries', sponsorLabel: 'Sponsor Inquiries', general: 'General Inquiries', quickLinks: 'Quick Links'
     },
-    detail: { homepage: 'Visit Website', books: 'Sponsored Books', close: 'Close', publisher: 'Book Sponsor' },
+    detail: { homepage: 'Visit Website', books: 'Sponsored Books', close: 'Close', publisher: 'Book Sponsor', event: 'On-site Event', time: 'Time', place: 'Place', how: 'How it works', reward: 'Reward' },
     bar: { status: 'Registration Closed', tutorial: 'Tutorial Sign-up' }
   }
 };
+
+// On-site Events(현장 이벤트) — 홈페이지 목록과 팝업에 쓰임. 문구는 { ko, en }
+const EVENTS = [
+  { id: 'stamp-tour',
+    name: { ko: '스탬프 투어', en: 'Stamp Tour' },
+    label: { ko: '스탬프 투어', en: 'Stamp Tour' },
+    summary: { ko: '행사장 곳곳에서 스탬프를 모두 모으면 완주 경품을 드려요.', en: 'Collect stamps around the venue and get a completion prize.' },
+    time: { ko: '10:00–17:00', en: '10:00–17:00' },
+    timeShort: { ko: '10:00–17:00', en: '10:00–17:00' },
+    place: { ko: '등록 데스크 문의', en: 'Ask at the registration desk' },
+    desc: { ko: '행사장 곳곳에서 스탬프를 모아 보세요. 스탬프를 모두 모으면 완주 경품을 드립니다.', en: 'Collect stamps around the venue. Gather them all to receive a completion prize.' },
+    steps: [
+      { title: { ko: '스탬프 카드 받기', en: 'Get a stamp card' }, text: { ko: '등록 시 스탬프 카드를 받아요.', en: 'Pick up your stamp card when you register.' } },
+      { title: { ko: '후원사 부스 방문', en: 'Visit sponsor booths' }, text: { ko: '부스를 방문해 대화를 나누면 스탬프를 찍어 드려요.', en: 'Visit a booth and chat to get a stamp.' } },
+      { title: { ko: '운영진 이벤트 참여', en: 'Join organizer events' }, text: { ko: 'YAHO 고민상담소 등 운영진 이벤트에서도 스탬프를 모을 수 있어요.', en: 'Organizer events like YAHO Office Hours give stamps too.' } },
+      { title: { ko: '등록 데스크에서 완주 경품 받기', en: 'Claim your prize at the registration desk' }, text: { ko: '스탬프를 확인한 뒤 완주 경품을 드려요.', en: 'Show your stamps to receive your completion prize.' } }
+    ],
+    reward: { ko: '어떤 선물이 기다리고 있을지는 아직 비밀이에요 🤫 현장에서 직접 확인해 주세요! ✨', en: 'What’s waiting for you is still a secret 🤫 Come find out on site! ✨' } },
+  { id: 'yaho-office-hours',
+    name: { ko: 'YAHO 고민상담소', en: 'YAHO Office Hours' },
+    label: { ko: '무엇이든 물어보세요 YAHO 고민상담소', en: 'Ask Anything: YAHO Office Hours' },
+    kicker: { ko: '무엇이든 물어보세요', en: 'Ask Anything' },
+    summary: { ko: '혼자 붙잡고 있던 고민을 PyTorch Day Korea에 모인 동료들과 함께 풀어보세요.', en: 'Work through the questions you’ve been stuck on with fellow PyTorch practitioners.' },
+    time: { ko: '13:30 · 14:30 · 15:20 · 16:10 · 16:55 · 17:40 (쉬는 시간 시작 시각, 각 10분)', en: '13:30 · 14:30 · 15:20 · 16:10 · 16:55 · 17:40 (at the start of each break, 10 min each)' },
+    timeShort: { ko: '쉬는 시간', en: 'During breaks' },
+    place: { ko: '18층 라운지', en: '18F Lounge' },
+    desc: { ko: '모델은 왜 수렴하지 않을까, 서빙 비용은 어떻게 줄일까, 다음 커리어는 어디로 가야 할까. 혼자 붙잡고 있던 고민을 PyTorch Day Korea에 모인 동료들과 함께 풀어보세요.', en: 'Why won’t my model converge? How do I cut serving costs? Where should my career go next? Bring the questions you’ve been stuck on and work through them with fellow PyTorch practitioners.' },
+    steps: [
+      { title: { ko: '주제별 로테이션', en: 'Rotating topics' }, text: { ko: 'Run → Build → Serve 주제별 고민과 커리어 & 오픈소스 고민을 다뤄요.', en: 'Questions rotate through Run → Build → Serve topics, plus career & open-source questions.' } },
+      { title: { ko: '내 고민 남기기', en: 'Drop off your question' }, text: { ko: '오전 등록 때 접수대에 고민을 남기면 오후 상담 주제로 채택될 수 있어요.', en: 'Leave your question at the registration desk in the morning and it may become an afternoon topic.' } },
+      { title: { ko: '여러 번 참여하기', en: 'Join more than once' }, text: { ko: '여러 번 참여하신 분께 한정판 기념품을 드려요.', en: 'Join more than once to receive a limited-edition souvenir.' } }
+    ],
+    reward: { ko: '여러 번 놀러 오시면 한정판 기념품을 드려요! 무엇일지는 아직 비밀 🤫 현장에서 확인해 주세요 ✨', en: 'Drop by more than once for a limited-edition souvenir! What it is is still a secret 🤫 Find out on site ✨' } }
+];
 
 // Keynote — { name, nameEn, role, roleEn, org, orgEn, logo, photo, title, titleEn }. 흰 카드에 사진·이름·직함·소속 로고(없으면 소속 이름).
 // title(발표 제목)·role은 비어 있으면 숨김. logoH로 로고마다 보이는 크기를 맞춤. 로고는 흰 배경용(어두운 글자)을 씀. 비어 있으면 Keynote 영역 전체를 숨김
@@ -699,7 +775,7 @@ class Component extends DCLogic {
     this._onResizeNav = onResize;
 
     const onHash = () => {
-      const m = /^#(sponsor|publisher)\/(.+)$/.exec(window.location.hash);
+      const m = /^#(sponsor|publisher|event)\/(.+)$/.exec(window.location.hash);
       if (m && this._findDetail(m[1], decodeURIComponent(m[2]))) this.openDetail(m[1], decodeURIComponent(m[2]));
     };
     onHash();
@@ -862,6 +938,7 @@ class Component extends DCLogic {
 
   _findDetail(kind, id) {
     if (kind === 'publisher') { const pb = PUBLISHERS.find(p => p.id === id); return pb ? { ...pb } : null; }
+    if (kind === 'event') { const ev = EVENTS.find(x => x.id === id); return ev ? { ...ev } : null; }
     for (const tier of SPONSOR_TIERS) {
       const sp = tier.items.find(x => x.id === id);
       if (sp) return { ...sp, tier: tier.name };
@@ -874,9 +951,10 @@ class Component extends DCLogic {
     history.replaceState(null, '', '#' + kind + '/' + encodeURIComponent(id));
   };
   closeDetail = () => {
+    const back = this.state.detail && this.state.detail.kind === 'event' ? '#events' : '#sponsors';
     this.setState({ detail: null });
     document.body.style.overflow = '';
-    history.replaceState(null, '', '#sponsors');
+    history.replaceState(null, '', back);
   };
 
   renderVals() {
@@ -891,6 +969,7 @@ class Component extends DCLogic {
     const eventShort = lang === 'en' ? 'Nov 21' : '11.21 (토)';
     const detail = this.state.detail && this._findDetail(this.state.detail.kind, this.state.detail.id);
     if (detail) detail.kind = this.state.detail.kind;
+    const L = v => v && (lang === 'en' && v.en ? v.en : v.ko);
     return {
       accent, rad, t, lang, dday, eventShort, regOpen,
       isNarrow: this.state.isNarrow,
@@ -933,7 +1012,15 @@ class Component extends DCLogic {
       hasPublishers: PUBLISHERS.length > 0,
       publishers: PUBLISHERS.map(pb => ({ ...pb, name: lang === 'en' && pb.nameEn ? pb.nameEn : pb.name, open: () => this.openDetail('publisher', pb.id) })),
       detailOpen: !!detail,
-      detail: detail ? {
+      events: EVENTS.map(ev => ({ label: L(ev.label), summary: L(ev.summary), timeShort: L(ev.timeShort), place: L(ev.place), open: () => this.openDetail('event', ev.id) })),
+      detail: detail && detail.kind === 'event' ? {
+        isEvent: true, hasLogo: false, label: t.detail.event, labelColor: 'var(--c2)', labelTop: '28px',
+        name: L(detail.name), kicker: L(detail.kicker) || '', hasKicker: !!detail.kicker, time: L(detail.time), place: L(detail.place),
+        desc: L(detail.desc), hasDesc: true, descTop: '20px', reward: L(detail.reward),
+        steps: detail.steps.map((st, i) => ({ num: String(i + 1).padStart(2, '0'), title: L(st.title), text: L(st.text) })),
+        hasBooks: false, books: [], url: ''
+      } : detail ? {
+        isEvent: false, hasLogo: true, labelColor: 'var(--c3)', labelTop: '24px', descTop: '12px',
         label: detail.kind === 'publisher' ? t.detail.publisher : detail.tier,
         name: lang === 'en' && detail.nameEn ? detail.nameEn : detail.name,
         logo: detail.logo,
