@@ -620,16 +620,16 @@ const EVENTS = [
   { id: 'stamp-tour',
     name: { ko: '스탬프 투어', en: 'Stamp Tour' },
     label: { ko: '스탬프 투어', en: 'Stamp Tour' },
-    summary: { ko: '행사장 곳곳에서 스탬프를 모두 모으면 완주 경품을 드려요.', en: 'Collect stamps around the venue and get a completion prize.' },
+    summary: { ko: '후원사 부스를 방문하고 운영진 이벤트에 참여한 뒤, 등록 데스크에서 경품을 뽑아 보세요.', en: 'Visit sponsor booths, join organizer events, then draw a prize at the registration desk.' },
     time: { ko: '10:00–17:00', en: '10:00–17:00' },
     timeShort: { ko: '10:00–17:00', en: '10:00–17:00' },
     place: { ko: '등록 데스크 문의', en: 'Ask at the registration desk' },
-    desc: { ko: '행사장 곳곳에서 스탬프를 모아 보세요. 스탬프를 모두 모으면 완주 경품을 드립니다.', en: 'Collect stamps around the venue. Gather them all to receive a completion prize.' },
+    desc: { ko: '참가 QR 하나로 후원사 부스 방문과 운영진 이벤트 참여 내역을 모아 보세요. 조건을 충족하면 등록 데스크에서 경품을 뽑을 수 있어요.', en: 'Use your attendee QR to log sponsor booth visits and organizer events. Meet the requirements to draw a prize at the registration desk.' },
     steps: [
-      { title: { ko: '스탬프 카드 받기', en: 'Get a stamp card' }, text: { ko: '등록 시 스탬프 카드를 받아요.', en: 'Pick up your stamp card when you register.' } },
-      { title: { ko: '후원사 부스 방문', en: 'Visit sponsor booths' }, text: { ko: '부스를 방문해 대화를 나누면 스탬프를 찍어 드려요.', en: 'Visit a booth and chat to get a stamp.' } },
-      { title: { ko: '운영진 이벤트 참여', en: 'Join organizer events' }, text: { ko: 'YAHO 고민상담소 등 운영진 이벤트에서도 스탬프를 모을 수 있어요.', en: 'Organizer events like YAHO Office Hours give stamps too.' } },
-      { title: { ko: '등록 데스크에서 완주 경품 받기', en: 'Claim your prize at the registration desk' }, text: { ko: '스탬프를 확인한 뒤 완주 경품을 드려요.', en: 'Show your stamps to receive your completion prize.' } }
+      { title: { ko: '참가 QR 준비하기', en: 'Have your attendee QR ready' }, text: { ko: '현장에서 바로 보여줄 수 있도록 본인의 참가 QR을 준비해 주세요.', en: 'Keep your attendee QR handy so you can show it right away on site.' } },
+      { title: { ko: '후원사 부스 방문하기', en: 'Visit sponsor booths' }, text: { ko: '부스에서 대화를 나눈 뒤 담당자에게 참가 QR을 보여주세요. 담당자가 QR을 스캔해 방문을 기록해요.', en: 'After chatting at a booth, show your attendee QR. Staff will scan it to record your visit.' } },
+      { title: { ko: '운영진 이벤트 참여하기', en: 'Join organizer events' }, text: { ko: 'YAHO 고민상담소 등 운영진 이벤트에 참여한 내역도 경품 뽑기에 반영돼요.', en: 'Joining organizer events like YAHO Office Hours also counts toward the prize draw.' } },
+      { title: { ko: '등록 데스크에서 경품 뽑기', en: 'Draw a prize at the registration desk' }, text: { ko: '등록 데스크에 참가 QR을 보여주세요. 참여 내역을 확인한 뒤 조건을 충족하면 경품을 뽑을 수 있어요.', en: 'Show your attendee QR at the registration desk. Once we confirm you meet the requirements, you can draw a prize.' } }
     ],
     reward: { ko: '어떤 선물이 기다리고 있을지는 아직 비밀이에요 🤫 현장에서 직접 확인해 주세요! ✨', en: 'What’s waiting for you is still a secret 🤫 Come find out on site! ✨' } },
   { id: 'yaho-office-hours',
@@ -645,7 +645,7 @@ const EVENTS = [
       { title: { ko: '주제별 로테이션', en: 'Rotating topics' }, text: { ko: 'Run → Build → Serve 주제별 고민과 커리어 & 오픈소스 고민을 다뤄요.', en: 'Questions rotate through Run → Build → Serve topics, plus career & open-source questions.' } },
       { title: { ko: '내 고민 남기기', en: 'Drop off your question' }, text: { ko: '오전 등록 때 접수대에 고민을 남기면 오후 상담 주제로 채택될 수 있어요.', en: 'Leave your question at the registration desk in the morning and it may become an afternoon topic.' } }
     ],
-    reward: { ko: '참여하시면 스탬프 투어 스탬프를 찍어 드리고, 선물도 드려요! 부담 없이 놀러 오세요 🙌✨', en: 'Join in to get a Stamp Tour stamp and a gift! Drop by anytime 🙌✨' } }
+    reward: { ko: '참가 QR을 보여주시면 스캔해서 스탬프 투어 참여 내역에 반영해 드리고, 선물도 드려요! 부담 없이 놀러 오세요 🙌✨', en: 'Show your attendee QR and we’ll scan it to count toward the Stamp Tour, plus give you a gift! Drop by anytime 🙌✨' } }
 ];
 
 // Keynote — { name, nameEn, role, roleEn, org, orgEn, logo, photo, title, titleEn }. 흰 카드에 사진·이름·직함·소속 로고(없으면 소속 이름).
