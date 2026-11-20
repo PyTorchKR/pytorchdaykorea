@@ -27,7 +27,12 @@
   a { color: inherit; }
   .wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 56px; }
 
-  header { padding: 28px 0 8px; }
+  header { padding: 16px 0 8px; }
+  /* 한/영 전환. 처음에는 브라우저 언어를 따르고, 고르면 이 기기에 기억한다. */
+  .lang { display: flex; width: max-content; margin: 0 0 10px auto; padding: 3px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); }
+  .lang button { border: 0; background: transparent; color: var(--ink2); font: inherit; font-size: 12.5px; font-weight: 700; padding: 5px 11px; border-radius: 999px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  html[lang="en"] body { word-break: normal; }
   .kicker { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--c1); }
   h1 { margin-top: 6px; font-size: 30px; font-weight: 900; line-height: 1.2; letter-spacing: -.02em; }
   h1 span { background: linear-gradient(90deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -85,117 +90,160 @@
 <div class="wrap">
 
   <header>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <div class="kicker">TORCH YAHO! · 2026.11.21 SAT</div>
-    <h1>오늘의 <span>PyTorch Day Korea</span> 안내</h1>
-    <p class="where">센터필드 EAST 18층 · AWS 코리아 (튜토리얼은 12층)</p>
+    <h1 data-en="Today at <span>PyTorch Day Korea</span>">오늘의 <span>PyTorch Day Korea</span> 안내</h1>
+    <p class="where" data-en="Centerfield EAST 18F · AWS Korea (tutorials on 12F)">센터필드 EAST 18층 · AWS 코리아 (튜토리얼은 12층)</p>
   </header>
 
   <nav aria-label="바로가기">
-    <a href="#timetable">시간표</a>
-    <a href="#lunch">점심</a>
-    <a href="#stamp">스탬프 투어</a>
-    <a href="#yaho">YAHO 고민상담소</a>
-    <a href="#lightning">라이트닝 토크</a>
+    <a href="#timetable" data-en="Timetable">시간표</a>
+    <a href="#lunch" data-en="Lunch">점심</a>
+    <a href="#stamp" data-en="Stamp Tour">스탬프 투어</a>
+    <a href="#yaho" data-en="YAHO Office Hours">YAHO 고민상담소</a>
+    <a href="#lightning" data-en="Lightning Talks">라이트닝 토크</a>
   </nav>
 
   <section id="timetable">
     <div class="num">01</div>
-    <h2>시간표는 여기서 봐 주세요</h2>
-    <p>세션룸별 발표 시간과 내용은 홈페이지 시간표에서 확인할 수 있습니다. 바뀌는 내용도 그곳에 바로 반영됩니다.</p>
-    <a class="btn" href="https://pytorchday.kr/#timetable">시간표 보기</a>
-    <a class="btn ghost" href="https://talk.pytorchday.kr/pytorch-day-korea-2026/schedule/" target="_blank" rel="noopener">발표 상세 보기 (Pretalx)</a>
+    <h2 data-en="Check the timetable here">시간표는 여기서 봐 주세요</h2>
+    <p data-en="Session times and details for each room are on the website timetable. Any changes show up there right away.">세션룸별 발표 시간과 내용은 홈페이지 시간표에서 확인할 수 있습니다. 바뀌는 내용도 그곳에 바로 반영됩니다.</p>
+    <a class="btn" href="https://pytorchday.kr/#timetable" data-en="View timetable">시간표 보기</a>
+    <a class="btn ghost" href="https://talk.pytorchday.kr/pytorch-day-korea-2026/schedule/" target="_blank" rel="noopener" data-en="Session details (Pretalx)">발표 상세 보기 (Pretalx)</a>
   </section>
 
   <section id="lunch">
     <div class="num">02</div>
-    <h2>점심 식사 안내</h2>
-    <p class="lead">점심은 후토루 김밥으로 준비했습니다. 두 곳에서 동시에 나눠 드립니다.</p>
+    <h2 data-en="Lunch">점심 식사 안내</h2>
+    <p class="lead" data-en="Lunch is Futoru gimbap, handed out at two spots at the same time.">점심은 후토루 김밥으로 준비했습니다. 두 곳에서 동시에 나눠 드립니다.</p>
     <dl class="facts">
-      <div class="fact"><dt>시간</dt><dd>12:20 – 14:00</dd></div>
-      <div class="fact"><dt>18층</dt><dd>후원사 부스로 가는 길목의 탕비실</dd></div>
-      <div class="fact"><dt>12층</dt><dd>세션룸 3 근처</dd></div>
+      <div class="fact"><dt data-en="TIME">시간</dt><dd>12:20 – 14:00</dd></div>
+      <div class="fact"><dt data-en="18F">18층</dt><dd data-en="Pantry on the way to the sponsor booths">후원사 부스로 가는 길목의 탕비실</dd></div>
+      <div class="fact"><dt data-en="12F">12층</dt><dd data-en="Near Session Room 3">세션룸 3 근처</dd></div>
     </dl>
-    <div class="callout">12:50 튜토리얼을 신청하신 분은 <b>12층</b>에서 받아 주세요.</div>
+    <div class="callout" data-en="If you signed up for a 12:50 tutorial, please pick up lunch on <b>12F</b>.">12:50 튜토리얼을 신청하신 분은 <b>12층</b>에서 받아 주세요.</div>
   </section>
 
   <section id="stamp">
     <div class="num">03</div>
-    <h2>스탬프 투어</h2>
-    <p class="lead">후원사 부스를 돌면서 QR코드를 스캔해서 스탬프를 모아 주세요! 모은 만큼 선물을 드립니다. 전부 모으지 않아도 괜찮아요.</p>
+    <h2 data-en="Stamp Tour">스탬프 투어</h2>
+    <p class="lead" data-en="Visit the sponsor booths, get your QR code scanned, and collect stamps! The more you collect, the better the gift. You don't need to collect them all.">후원사 부스를 돌면서 QR코드를 스캔해서 스탬프를 모아 주세요! 모은 만큼 선물을 드립니다. 전부 모으지 않아도 괜찮아요.</p>
     <ol class="steps">
-      <li><b>부스 방문</b> · 후원사 부스와 운영진 이벤트에 들러 이야기를 나눕니다.</li>
-      <li><b>명찰 QR 스캔</b> · 담당자가 내 명찰의 QR을 스캔하면 스탬프가 찍힙니다.</li>
-      <li><b>선물 받기</b> · 아래 조건을 채우면 등록 데스크(「스탬프 투어 인증」 배너)에서 참가 QR을 보여 주고 선물을 받습니다.</li>
+      <li data-en="<b>Visit</b> · Drop by sponsor booths and organizer events and have a chat."><b>부스 방문</b> · 후원사 부스와 운영진 이벤트에 들러 이야기를 나눕니다.</li>
+      <li data-en="<b>Get your badge scanned</b> · Staff scan the QR on your badge and you get a stamp."><b>명찰 QR 스캔</b> · 담당자가 내 명찰의 QR을 스캔하면 스탬프가 찍힙니다.</li>
+      <li data-en="<b>Claim your gift</b> · Once you meet a condition below, show your QR at the registration desk (look for the “Stamp Tour Check-in” banner)."><b>선물 받기</b> · 아래 조건을 채우면 등록 데스크(「스탬프 투어 인증」 배너)에서 참가 QR을 보여 주고 선물을 받습니다.</li>
     </ol>
-    <div class="chips-label">선물 받는 조건</div>
+    <div class="chips-label" data-en="GIFT CONDITIONS">선물 받는 조건</div>
     <div class="tiers">
       <div class="tier">
-        <div class="tier-name">모두 참여했어요</div>
-        <div class="tier-rule">회사 부스 6곳 전체 방문</div>
-        <div class="tier-open">13:30 오픈</div>
+        <div class="tier-name" data-en="All in">모두 참여했어요</div>
+        <div class="tier-rule" data-en="Visit all 6 sponsor booths">회사 부스 6곳 전체 방문</div>
+        <div class="tier-open" data-en="Opens 13:30">13:30 오픈</div>
       </div>
       <div class="tier">
-        <div class="tier-name">거의 다 참여했어요</div>
-        <div class="tier-rule">부스·운영진 이벤트 합쳐 7개 이상</div>
-        <div class="tier-open">15:20 오픈</div>
+        <div class="tier-name" data-en="Almost all">거의 다 참여했어요</div>
+        <div class="tier-rule" data-en="7 or more booths and organizer events combined">부스·운영진 이벤트 합쳐 7개 이상</div>
+        <div class="tier-open" data-en="Opens 15:20">15:20 오픈</div>
       </div>
       <div class="tier">
-        <div class="tier-name">함께 참여했어요</div>
-        <div class="tier-rule">부스·운영진 이벤트 합쳐 3개 이상</div>
-        <div class="tier-open">16:55 오픈</div>
+        <div class="tier-name" data-en="Joined in">함께 참여했어요</div>
+        <div class="tier-rule" data-en="3 or more booths and organizer events combined">부스·운영진 이벤트 합쳐 3개 이상</div>
+        <div class="tier-open" data-en="Opens 16:55">16:55 오픈</div>
       </div>
     </div>
-    <a class="btn" href="https://booth.pytorchday.kr/mystamp" target="_blank" rel="noopener">내 스탬프 보기</a>
-    <p class="btn-note">내 명찰의 QR을 찍고 참가 신청 때 적은 휴대폰번호를 넣으면, 어디를 다녀왔고 어디가 남았는지 볼 수 있습니다.</p>
-    <div class="chips-label">후원사 부스</div>
+    <a class="btn" id="mystamp-link" href="https://booth.pytorchday.kr/mystamp" target="_blank" rel="noopener" data-en="See my stamps">내 스탬프 보기</a>
+    <p class="btn-note" data-en="Scan the QR on your badge and enter the mobile number you registered with to see where you've been and what's left.">내 명찰의 QR을 찍고 참가 신청 때 적은 휴대폰번호를 넣으면, 어디를 다녀왔고 어디가 남았는지 볼 수 있습니다.</p>
+    <div class="chips-label" data-en="SPONSOR BOOTHS">후원사 부스</div>
     <div class="chips">
       <span class="chip">Nota AI</span><span class="chip">aieev</span><span class="chip">Lablup</span>
       <span class="chip">NIPA</span><span class="chip">Shinzu</span><span class="chip">Runpod</span>
     </div>
-    <div class="chips-label">운영진 이벤트</div>
+    <div class="chips-label" data-en="ORGANIZER EVENTS">운영진 이벤트</div>
     <div class="chips">
-      <span class="chip prog">야호톡</span><span class="chip prog">SNS 팔로우</span>
+      <span class="chip prog" data-en="YAHO Talk">야호톡</span><span class="chip prog" data-en="SNS Follow">SNS 팔로우</span>
     </div>
     <dl class="facts">
-      <div class="fact"><dt>시간</dt><dd>10:00 – 17:00<small>스탬프를 모을 수 있는 시간</small></dd></div>
-      <div class="fact"><dt>마감</dt><dd>선물 수령은 <b>17:30</b>까지<small>마감 뒤에는 받을 수 없으니 잊지 말고 들러 주세요.</small></dd></div>
-      <div class="fact"><dt>선물</dt><dd>무엇일지는 아직 비밀이에요. 현장에서 확인해 주세요!</dd></div>
+      <div class="fact"><dt data-en="TIME">시간</dt><dd data-en="10:00 – 17:00<small>When you can collect stamps</small>">10:00 – 17:00<small>스탬프를 모을 수 있는 시간</small></dd></div>
+      <div class="fact"><dt data-en="CLOSES">마감</dt><dd data-en="Gifts can be claimed until <b>17:30</b><small>Nothing is handed out after that, so don't forget to stop by.</small>">선물 수령은 <b>17:30</b>까지<small>마감 뒤에는 받을 수 없으니 잊지 말고 들러 주세요.</small></dd></div>
+      <div class="fact"><dt data-en="GIFT">선물</dt><dd data-en="What's waiting is still a secret. Come find out on site!">무엇일지는 아직 비밀이에요. 현장에서 확인해 주세요!</dd></div>
     </dl>
   </section>
 
   <section id="yaho">
     <div class="num">04</div>
-    <h2>YAHO 고민상담소도 즐겨 주세요</h2>
-    <p class="lead">혼자 붙잡고 있던 고민을 PyTorch Day Korea에 모인 동료들과 함께 풀어 보세요.</p>
-    <p>모델은 왜 수렴하지 않을까, 서빙 비용은 어떻게 줄일까, 다음 커리어는 어디로 가야 할까. PyTorch와 AI 개발 고민이라면 무엇이든 좋습니다.</p>
+    <h2 data-en="Come by YAHO Office Hours">YAHO 고민상담소도 즐겨 주세요</h2>
+    <p class="lead" data-en="Work through the questions you've been stuck on with fellow PyTorch practitioners.">혼자 붙잡고 있던 고민을 PyTorch Day Korea에 모인 동료들과 함께 풀어 보세요.</p>
+    <p data-en="Why won't my model converge? How do I cut serving costs? Where should my career go next? Any PyTorch or AI development question is welcome.">모델은 왜 수렴하지 않을까, 서빙 비용은 어떻게 줄일까, 다음 커리어는 어디로 가야 할까. PyTorch와 AI 개발 고민이라면 무엇이든 좋습니다.</p>
     <dl class="facts">
-      <div class="fact"><dt>장소</dt><dd>18층 라운지</dd></div>
-      <div class="fact"><dt>시간</dt><dd>쉬는 시간마다 10분씩<small>13:30 · 14:30 · 15:20 · 16:10 · 16:55 · 17:40</small></dd></div>
+      <div class="fact"><dt data-en="PLACE">장소</dt><dd data-en="18F Lounge">18층 라운지</dd></div>
+      <div class="fact"><dt data-en="TIME">시간</dt><dd data-en="10 minutes at the start of each break<small>13:30 · 14:30 · 15:20 · 16:10 · 16:55 · 17:40</small>">쉬는 시간마다 10분씩<small>13:30 · 14:30 · 15:20 · 16:10 · 16:55 · 17:40</small></dd></div>
     </dl>
     <ol class="steps">
-      <li><b>고민 남기기</b> · 명찰의 QR 코드를 스캔해 나누고 싶은 고민을 남겨 주세요. 12시까지 접수된 고민 중에서 오후 상담 주제를 고릅니다.</li>
-      <li><b>주제별로 돌아가며</b> · Run → Build → Serve, 그리고 커리어와 오픈소스 고민을 다룹니다.</li>
-      <li><b>참가 QR 보여 주기</b> · 참여하면 QR을 스캔해 스탬프 투어에 반영해 드리고 선물도 드립니다. 부담 없이 놀러 오세요.</li>
+      <li data-en="<b>Drop off your question</b> · Scan the QR code on your badge and leave the question you'd like to discuss. Afternoon topics are picked from those received by 12:00."><b>고민 남기기</b> · 명찰의 QR 코드를 스캔해 나누고 싶은 고민을 남겨 주세요. 12시까지 접수된 고민 중에서 오후 상담 주제를 고릅니다.</li>
+      <li data-en="<b>Rotating topics</b> · Run → Build → Serve, plus career and open-source questions."><b>주제별로 돌아가며</b> · Run → Build → Serve, 그리고 커리어와 오픈소스 고민을 다룹니다.</li>
+      <li data-en="<b>Show your QR</b> · When you join, we scan your QR to count it toward the Stamp Tour and give you a gift. Feel free to drop by."><b>참가 QR 보여 주기</b> · 참여하면 QR을 스캔해 스탬프 투어에 반영해 드리고 선물도 드립니다. 부담 없이 놀러 오세요.</li>
     </ol>
   </section>
 
   <section id="lightning">
     <div class="num">05</div>
-    <h2>라이트닝 토크 안내</h2>
-    <p class="lead">하루를 마무리하며 짧고 가볍게 나누는 발표 시간입니다. 클로징과 함께 진행됩니다.</p>
+    <h2 data-en="Lightning Talks">라이트닝 토크 안내</h2>
+    <p class="lead" data-en="Short, casual talks to wrap up the day, held together with the closing.">하루를 마무리하며 짧고 가볍게 나누는 발표 시간입니다. 클로징과 함께 진행됩니다.</p>
     <dl class="facts">
-      <div class="fact"><dt>시간</dt><dd>17:50부터</dd></div>
-      <div class="fact"><dt>장소</dt><dd>세션룸 1</dd></div>
+      <div class="fact"><dt data-en="TIME">시간</dt><dd data-en="From 17:50">17:50부터</dd></div>
+      <div class="fact"><dt data-en="PLACE">장소</dt><dd data-en="Session Room 1">세션룸 1</dd></div>
     </dl>
-    <p>발표하고 싶은 분은 아래에서 신청해 주세요.</p>
-    <a class="btn" href="https://forms.gle/YaqgxFcufjzFXM6KA" target="_blank" rel="noopener">라이트닝 토크 신청하기</a>
+    <p data-en="Want to give a talk? Sign up below.">발표하고 싶은 분은 아래에서 신청해 주세요.</p>
+    <a class="btn" href="https://forms.gle/YaqgxFcufjzFXM6KA" target="_blank" rel="noopener" data-en="Sign up for a lightning talk">라이트닝 토크 신청하기</a>
   </section>
 
   <footer>
-    <p>문의 <a href="mailto:support@pytorchday.kr">support@pytorchday.kr</a> · 현장에서는 가까운 운영진에게 말씀해 주세요.</p>
+    <p data-en='Contact <a href="mailto:support@pytorchday.kr">support@pytorchday.kr</a> · On site, just ask any organizer nearby.'>문의 <a href="mailto:support@pytorchday.kr">support@pytorchday.kr</a> · 현장에서는 가까운 운영진에게 말씀해 주세요.</p>
     <p><a href="https://pytorchday.kr/">pytorchday.kr</a> · PyTorch Day Korea 2026</p>
   </footer>
 
 </div>
+<script>
+  // 한/영 전환. 한국어는 HTML 본문 그대로이고, 영어는 각 요소의 data-en 에 있다.
+  // 문구를 고치면 본문과 data-en 을 같이 고친다. 주소에 ?lang=en 을 붙이면 영어로 열린다.
+  (function () {
+    var KEY = "pdk-lang";
+    var TITLES = { ko: "오늘의 안내 · PyTorch Day Korea 2026", en: "Today · PyTorch Day Korea 2026" };
+    var nodes = [].slice.call(document.querySelectorAll("[data-en]"));
+    nodes.forEach(function (node) { node.dataset.ko = node.innerHTML; });
+
+    function apply(lang) {
+      document.documentElement.lang = lang;
+      document.title = TITLES[lang];
+      nodes.forEach(function (node) { node.innerHTML = lang === "en" ? node.dataset.en : node.dataset.ko; });
+      [].forEach.call(document.querySelectorAll(".lang button"), function (button) {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      // 내 스탬프 화면도 같은 언어로 열리게 한다.
+      document.getElementById("mystamp-link").href = "https://booth.pytorchday.kr/mystamp" + (lang === "en" ? "?lang=en" : "");
+    }
+
+    function initial() {
+      var fromUrl = new URLSearchParams(location.search).get("lang");
+      if (fromUrl === "ko" || fromUrl === "en") return fromUrl;
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved === "ko" || saved === "en") return saved;
+      } catch (error) { /* 저장이 막힌 브라우저 */ }
+      return (navigator.language || "ko").toLowerCase().indexOf("ko") === 0 ? "ko" : "en";
+    }
+
+    [].forEach.call(document.querySelectorAll(".lang button"), function (button) {
+      button.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, button.dataset.lang); } catch (error) { /* 무시 */ }
+        apply(button.dataset.lang);
+      });
+    });
+    apply(initial());
+  })();
+</script>
 </body>
 </html>
