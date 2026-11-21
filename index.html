@@ -823,14 +823,14 @@ const TT_ROOMS = [
   { id: 5, ko: '튜토리얼 2', en: 'Tutorial 2' }
 ];
 const TT_TRACKS = { 1: { tag: 'BUILD', color: 'var(--c1)' }, 2: { tag: 'SERVE', color: 'var(--c2)' }, 3: { tag: 'RUN', color: 'var(--c4)' } };
-// pretalx 에는 키노트 발표자가 'PyTorchKR' 로만 들어 있어 이름을 따로 적는다(scripts/make_timetable.py 의 OVERRIDES 와 같은 기준).
+// 키노트 제목은 Pretalx 값을 그대로 쓴다. pretalx 에는 키노트 발표자가 'PyTorchKR' 로만 들어 있어 이름을 따로 적는다(scripts/make_timetable.py 의 OVERRIDES 와 같은 기준).
 // plain: Pretalx 상세 링크를 걸지 않는 행사 순서
 const TT_OVERRIDES = {
   WKBAXD: { title: '등록', titleEn: 'Registration', plain: true },
   E9CFSZ: { title: '오프닝', titleEn: 'Opening', plain: true },
-  M9DPKU: { title: 'Meta PyTorch', speakers: 'Driss Guessous, Sherlock Baihan Huang', keynote: true },
-  T38SSB: { title: 'Hugging Face', speakers: 'Jun Kim', keynote: true },
-  '977WV9': { title: 'NVIDIA', speakers: '김찬란', speakersEn: 'Chanran Kim', keynote: true },
+  M9DPKU: { speakers: 'Driss Guessous, Sherlock Baihan Huang', keynote: true },
+  T38SSB: { titleEn: 'From Solo to Together: Lessons from Growing Open Source in Seoul', speakers: 'Jun Kim', keynote: true },
+  '977WV9': { speakers: '김찬란', speakersEn: 'Chanran Kim', keynote: true },
   JFBLNH: { speakers: '윤석찬', speakersEn: 'Channy Yun', keynote: true },
   LMZFXK: { title: '라이트닝 토크 · 클로징', titleEn: 'Lightning Talks · Closing', plain: true }
 };
