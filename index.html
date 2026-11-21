@@ -479,6 +479,7 @@
               </li>
             </sc-for>
           </ol>
+          <sc-if value="{{ detail.hasLink }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px"><a href="{{ detail.linkUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;color:#fff;background:var(--c2);padding:11px 22px;border-radius:999px;box-shadow:0 10px 26px -12px var(--c2);transition:filter .15s ease,transform .15s ease" style-hover="filter:brightness(1.08);transform:translateY(-1px)">{{ detail.linkLabel }} →</a></div></sc-if>
           <div style="margin-top:20px;padding:16px 18px;border-radius:14px;background:color-mix(in srgb, var(--c2) 10%, transparent)">
             <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c2)">{{ t.detail.reward }}</div>
             <div style="display:flex;align-items:center;gap:14px;margin-top:8px"><span class="pdk-gift" aria-hidden="true">🎁</span><p style="font-size:15px;font-weight:600;line-height:1.6;color:var(--ink)">{{ detail.reward }}</p></div>
@@ -645,6 +646,7 @@ const EVENTS = [
       { title: { ko: '주제별 로테이션', en: 'Rotating topics' }, text: { ko: 'Run → Build → Serve 주제별 고민과 커리어 & 오픈소스 고민을 다뤄요.', en: 'Questions rotate through Run → Build → Serve topics, plus career & open-source questions.' } },
       { title: { ko: '내 고민 남기기', en: 'Drop off your question' }, text: { ko: '명찰의 QR 코드를 스캔해 나누고 싶은 고민을 남겨 주세요! 12시까지 접수된 고민 중에서 오후 상담 주제를 골라요.', en: 'Scan the QR code on your name badge to share your question! We’ll pick afternoon topics from questions submitted by 12:00.' } }
     ],
+    link: { url: 'https://yaho.pytorchday.kr/', ko: '고민 남기러 가기', en: 'Submit your question' },
     reward: { ko: '참가 QR을 보여주시면 스캔해서 스탬프 투어 참여 내역에 반영해 드리고, 선물도 드려요! 부담 없이 놀러 오세요 🙌✨', en: 'Show your attendee QR and we’ll scan it to count toward the Stamp Tour, plus give you a gift! Drop by anytime 🙌✨' } }
 ];
 
@@ -1165,6 +1167,7 @@ class Component extends DCLogic {
         isEvent: true, hasLogo: false, label: t.detail.event, labelColor: 'var(--c2)', labelTop: '28px',
         name: L(detail.name), kicker: L(detail.kicker) || '', hasKicker: !!detail.kicker, time: L(detail.time), place: L(detail.place),
         desc: L(detail.desc), hasDesc: true, descTop: '20px', reward: L(detail.reward),
+        hasLink: !!detail.link, linkUrl: detail.link ? detail.link.url : '', linkLabel: L(detail.link) || '',
         steps: detail.steps.map((st, i) => ({ num: String(i + 1).padStart(2, '0'), title: L(st.title), text: L(st.text) })),
         hasBooks: false, books: [], url: ''
       } : detail ? {
